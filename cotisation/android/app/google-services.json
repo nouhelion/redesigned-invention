@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "685974487005",
+    "project_id": "cotisation-449f9",
+    "storage_bucket": "cotisation-449f9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:685974487005:android:44be8f27cf05996f248034",
+        "android_client_info": {
+          "package_name": "com.example.cotisation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "685974487005-ectuiddnbbigl0mfr62o8d6182n9svum.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoI01k7l3cx9Jw6-vO0ry5xr-QKFPhkTE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "685974487005-ectuiddnbbigl0mfr62o8d6182n9svum.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
