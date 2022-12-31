@@ -1,22 +1,22 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:cotisation/components/cotisation.dart';
 import 'package:cotisation/components/profil.dart';
 import 'package:cotisation/components/search.dart';
+import 'package:cotisation/components/welcome.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
- 
-class Welcome extends StatefulWidget {
-  const Welcome({super.key});
+
+class Cotisation extends StatefulWidget {
+  const Cotisation({super.key});
 
   @override
-  State<Welcome> createState() => _WelcomeState();
+  State<Cotisation> createState() => _CotisationState();
 }
 
-class _WelcomeState extends State<Welcome> {
- int pageIndex = 0;
-  void _onItemTapped(int index) {
+class _CotisationState extends State<Cotisation> {
+   int pageIndex =2;
+ void _onItemTapped(int index) {
     setState(() {
       pageIndex = index;
 
@@ -38,7 +38,6 @@ class _WelcomeState extends State<Welcome> {
       }
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +46,7 @@ class _WelcomeState extends State<Welcome> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Welcome',
+              'cotisation',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 30,
@@ -76,7 +75,7 @@ class _WelcomeState extends State<Welcome> {
         ),
       )
     ,
-    bottomNavigationBar: GNav(
+      bottomNavigationBar: GNav(
         color: Colors.grey,
         activeColor: Colors.indigo,
         gap: 8,
@@ -95,7 +94,7 @@ class _WelcomeState extends State<Welcome> {
               }),
           GButton(
             icon: Icons.attach_money,
-            text: 'Cart',
+            text: 'Cotisation',
             onPressed: () {
               _onItemTapped(2);
             },

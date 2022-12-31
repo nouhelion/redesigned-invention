@@ -1,12 +1,15 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_build_context_synchronously
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cotisation/components/cotisation.dart';
+import 'package:cotisation/components/search.dart';
 import 'package:cotisation/components/welcome.dart';
 import 'package:cotisation/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
+ int pageIndex = 3;
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
@@ -26,7 +29,7 @@ class _ProfileState extends State<Profile> {
   final TextEditingController _cityController = TextEditingController();
   final TextEditingController _codeController = TextEditingController();
   final TextEditingController _birthdayController = TextEditingController();
-  int pageIndex = 3;
+ 
 
   void _onItemTapped(int index) {
     setState(() {
@@ -38,11 +41,11 @@ class _ProfileState extends State<Profile> {
       }
       if (index == 1) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Welcome()));
+            context, MaterialPageRoute(builder: (context) => Search()));
       }
       if (index == 2) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Welcome()));
+            context, MaterialPageRoute(builder: (context) => Cotisation()));
       }
       if (index == 3) {
         Navigator.push(
@@ -344,7 +347,7 @@ class _ProfileState extends State<Profile> {
               }),
           GButton(
             icon: Icons.attach_money,
-            text: 'Cart',
+            text: 'Cotisation',
             onPressed: () {
               _onItemTapped(2);
             },
