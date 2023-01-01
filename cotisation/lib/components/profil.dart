@@ -9,7 +9,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
- int pageIndex = 3;
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
@@ -29,7 +28,8 @@ class _ProfileState extends State<Profile> {
   final TextEditingController _cityController = TextEditingController();
   final TextEditingController _codeController = TextEditingController();
   final TextEditingController _birthdayController = TextEditingController();
- 
+  int pageIndex = 3;
+
 
   void _onItemTapped(int index) {
     setState(() {

@@ -15,7 +15,7 @@ class Welcome extends StatefulWidget {
 }
 
 class _WelcomeState extends State<Welcome> {
- int pageIndex = 0;
+ int pageIndex = 0;  
   void _onItemTapped(int index) {
     setState(() {
       pageIndex = index;
