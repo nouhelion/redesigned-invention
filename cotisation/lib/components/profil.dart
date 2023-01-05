@@ -30,7 +30,6 @@ class _ProfileState extends State<Profile> {
   final TextEditingController _birthdayController = TextEditingController();
   int pageIndex = 3;
 
-
   void _onItemTapped(int index) {
     setState(() {
       pageIndex = index;
@@ -328,38 +327,26 @@ class _ProfileState extends State<Profile> {
           ),
         ],
       ),
-      bottomNavigationBar: GNav(
-        color: Colors.grey,
-        activeColor: Colors.indigo,
-        gap: 8,
-        tabs: [
-          GButton(
-              icon: Icons.home,
-              text: 'Home',
-              onPressed: () {
-                _onItemTapped(0);
-              }),
-          GButton(
-              icon: Icons.search,
-              text: 'Search',
-              onPressed: () {
-                _onItemTapped(1);
-              }),
-          GButton(
-            icon: Icons.attach_money,
-            text: 'Cotisation',
-            onPressed: () {
-              _onItemTapped(2);
-            },
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Search',
           ),
-          GButton(
-            icon: Icons.person,
-            text: 'Profile',
-            onPressed: () {
-              _onItemTapped(3);
-            },
+          BottomNavigationBarItem(
+            icon: Icon(Icons.attach_money),
+            label: 'Cotisation',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          )
         ],
+        currentIndex: pageIndex,
+        unselectedItemColor: Colors.grey,
+        selectedItemColor: Colors.indigo,
+        onTap: _onItemTapped,
       ),
     );
   }

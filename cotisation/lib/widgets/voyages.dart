@@ -47,6 +47,8 @@ Widget FetchData(String collectionName) {
                     FirebaseFirestore.instance
                         .collection(collectionName)
                         .doc(FirebaseAuth.instance.currentUser!.uid)
+                        .collection("items")
+                        .doc(documentSnapshot.id)
                         .delete();
                   },
                 ),

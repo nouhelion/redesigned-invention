@@ -6,7 +6,7 @@ import 'package:cotisation/components/welcome.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
- 
+
 class Search extends StatefulWidget {
   const Search({super.key});
 
@@ -38,6 +38,7 @@ class _SearchState extends State<Search> {
       }
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,40 +74,27 @@ class _SearchState extends State<Search> {
             ),
           ],
         ),
-      )
-    ,
-      bottomNavigationBar: GNav(
-        color: Colors.grey,
-        activeColor: Colors.indigo,
-        gap: 8,
-        tabs: [
-          GButton(
-              icon: Icons.home,
-              text: 'Home',
-              onPressed: () {
-                _onItemTapped(0);
-              }),
-          GButton(
-              icon: Icons.search,
-              text: 'Search',
-              onPressed: () {
-                _onItemTapped(1);
-              }),
-          GButton(
-            icon: Icons.attach_money,
-            text: 'Cotisation',
-            onPressed: () {
-              _onItemTapped(2);
-            },
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Search',
           ),
-          GButton(
-            icon: Icons.person,
-            text: 'Profile',
-            onPressed: () {
-              _onItemTapped(3);
-            },
+          BottomNavigationBarItem(
+            icon: Icon(Icons.attach_money),
+            label: 'Cotisation',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          )
         ],
+        currentIndex: pageIndex,
+        unselectedItemColor: Colors.grey,
+        selectedItemColor: Colors.indigo,
+        onTap: _onItemTapped,
       ),
     );
   }
