@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cotisation/components/navigation_items/cotisation.dart';
 import 'package:cotisation/components/navigation_items/profil.dart';
 import 'package:cotisation/components/navigation_items/search.dart';
-import 'package:cotisation/widgets/voyages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -58,8 +57,8 @@ class _WelcomeState extends State<Welcome> {
         .collection("items")
         .doc()
         .set({
-          "title": "Voyage2",
-          "description": "Voyage2",
+          "title": _nameController.text.trim(),
+          "description": _descController.text.trim(),
         })
         .then((value) => print("Added to Database"))
         .catchError((error) => print("Failed to add to Database: $error"));
@@ -68,17 +67,62 @@ class _WelcomeState extends State<Welcome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-          child: FetchData("Voyages")),
-      //add inputs to add a new voyage
-      //FetchData("Voyages"),
-      // Add a button to add a new voyage
+      body: Column(
+        children: [
+          Expanded(
+              child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  Text(
+                    "VOYAGES",
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  ),],
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: ListTile(
+                      subtitle: TextFormField(
+                        controller: _nameController,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8))),
+                          hintText: '  Titre du voyage',
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Expanded(
+                    child: ListTile(
+                      subtitle: TextFormField(
+                        controller: _descController,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8))),
+                          hintText: '  Description du voyage',
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              
+            ],
+          )),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: addVoyage,
         tooltip: 'Add',
         child: Icon(Icons.add),
       ),
-
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
