@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_build_context_synchronously
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cotisation/components/cotisation.dart';
-import 'package:cotisation/components/search.dart';
-import 'package:cotisation/components/welcome.dart';
+import 'package:cotisation/components/navigation_items/cotisation.dart';
+import 'package:cotisation/components/navigation_items/search.dart';
+import 'package:cotisation/components/navigation_items/welcome.dart';
 import 'package:cotisation/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

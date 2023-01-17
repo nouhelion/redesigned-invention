@@ -1,20 +1,20 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:cotisation/components/cotisation.dart';
-import 'package:cotisation/components/profil.dart';
-import 'package:cotisation/components/welcome.dart';
+import 'package:cotisation/components/navigation_items/profil.dart';
+import 'package:cotisation/components/navigation_items/search.dart';
+import 'package:cotisation/components/navigation_items/welcome.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class Search extends StatefulWidget {
-  const Search({super.key});
+class Cotisation extends StatefulWidget {
+  const Cotisation({super.key});
 
   @override
-  State<Search> createState() => _SearchState();
+  State<Cotisation> createState() => _CotisationState();
 }
 
-class _SearchState extends State<Search> {
-  int pageIndex = 1;
+class _CotisationState extends State<Cotisation> {
+  int pageIndex = 2;
   void _onItemTapped(int index) {
     setState(() {
       pageIndex = index;
@@ -46,7 +46,7 @@ class _SearchState extends State<Search> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Search',
+              'cotisation',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 30,

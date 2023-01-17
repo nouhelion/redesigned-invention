@@ -2,8 +2,8 @@
 
 import 'dart:ui';
 
-import 'package:cotisation/components/login.dart';
-import 'package:cotisation/components/signup.dart';
+import 'package:cotisation/components/sign/login.dart';
+import 'package:cotisation/components/sign/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

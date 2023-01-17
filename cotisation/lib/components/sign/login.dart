@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors, prefer_const_constructors_in_immutables, avoid_print, use_build_context_synchronously, unused_import
 
 
-import 'package:cotisation/components/welcome.dart';
-import 'package:cotisation/components/signup.dart';
+import 'package:cotisation/components/navigation_items/welcome.dart';
+import 'package:cotisation/components/sign/signup.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
