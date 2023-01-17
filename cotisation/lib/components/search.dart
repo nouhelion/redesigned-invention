@@ -5,7 +5,6 @@ import 'package:cotisation/components/profil.dart';
 import 'package:cotisation/components/welcome.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});
