@@ -182,155 +182,157 @@ class _ParticipantPageState extends State<ParticipantPage> {
         title: Text(
             "Détails du Voyage " + "`" + _nameController.text.trim() + "`"),
       ),
-      body: Column(
-        children: [
-          SizedBox(
-            height: 25,
-          ),
-          Text(
-            "Ajouter les participants",
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(
-            height: 25,
-          ),
-          Column(
-            children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: ListTile(
-                      subtitle: TextFormField(
-                        controller: _parti1Controller,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8))),
-                          hintText: '  Nom du participant',
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 25,
+            ),
+            Text(
+              "Ajouter les participants",
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 25,
+            ),
+            Column(
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: ListTile(
+                        subtitle: TextFormField(
+                          controller: _parti1Controller,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8))),
+                            hintText: '  Nom du participant',
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Expanded(
-                    child: ListTile(
-                      subtitle: TextFormField(
-                        controller: _job1Controller,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8))),
-                          hintText: '  La tâche',
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Expanded(
+                      child: ListTile(
+                        subtitle: TextFormField(
+                          controller: _job1Controller,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8))),
+                            hintText: '  La tâche',
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: ListTile(
-                      subtitle: TextFormField(
-                        controller: _parti2Controller,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8))),
-                          hintText: '  Nom du participant',
+                  ],
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: ListTile(
+                        subtitle: TextFormField(
+                          controller: _parti2Controller,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8))),
+                            hintText: '  Nom du participant',
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Expanded(
-                    child: ListTile(
-                      subtitle: TextFormField(
-                        controller: _job2Controller,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8))),
-                          hintText: '   La tâche',
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Expanded(
+                      child: ListTile(
+                        subtitle: TextFormField(
+                          controller: _job2Controller,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8))),
+                            hintText: '   La tâche',
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: ListTile(
-                      subtitle: TextFormField(
-                        controller: _parti3Controller,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8))),
-                          hintText: '   Nom du participant',
+                  ],
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: ListTile(
+                        subtitle: TextFormField(
+                          controller: _parti3Controller,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8))),
+                            hintText: '   Nom du participant',
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Expanded(
-                    child: ListTile(
-                      subtitle: TextFormField(
-                        controller: _job3Controller,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8))),
-                          hintText: '   La tâche',
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Expanded(
+                      child: ListTile(
+                        subtitle: TextFormField(
+                          controller: _job3Controller,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8))),
+                            hintText: '   La tâche',
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: ListTile(
-                      subtitle: TextFormField(
-                        controller: _parti4Controller,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8))),
-                          hintText: '   Nom du participant',
+                  ],
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: ListTile(
+                        subtitle: TextFormField(
+                          controller: _parti4Controller,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8))),
+                            hintText: '   Nom du participant',
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Expanded(
-                    child: ListTile(
-                      subtitle: TextFormField(
-                        controller: _job4Controller,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8))),
-                          hintText: '   La tâche',
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Expanded(
+                      child: ListTile(
+                        subtitle: TextFormField(
+                          controller: _job4Controller,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8))),
+                            hintText: '   La tâche',
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ],
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
