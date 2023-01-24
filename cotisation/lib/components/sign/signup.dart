@@ -79,6 +79,7 @@ class _SignupPageState extends State<SignupPage> {
                     keyboardType: TextInputType.text,
                     controller: _nameController,
                     decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.person),
                       labelText: 'Nom & Prénom',
                       labelStyle: TextStyle(
                           fontFamily: 'Montserrat',
@@ -95,6 +96,7 @@ class _SignupPageState extends State<SignupPage> {
                     keyboardType: TextInputType.text,
                     controller: _emailController,
                     decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.email),
                       labelText: 'Adresse E-mail',
                       labelStyle: TextStyle(
                           fontFamily: 'Montserrat',
@@ -111,6 +113,7 @@ class _SignupPageState extends State<SignupPage> {
                     keyboardType: TextInputType.text,
                     controller: _birthdayController,
                     decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.calendar_today),
                       labelText: 'Date de Naissance',
                       labelStyle: TextStyle(
                           fontFamily: 'Montserrat',
@@ -127,6 +130,7 @@ class _SignupPageState extends State<SignupPage> {
                     keyboardType: TextInputType.phone,
                     controller: _phoneController,
                     decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.phone),
                       labelText: 'Numéro de Téléphone',
                       labelStyle: TextStyle(
                           fontFamily: 'Montserrat',
@@ -143,6 +147,7 @@ class _SignupPageState extends State<SignupPage> {
                     keyboardType: TextInputType.text,
                     controller: _passwordController,
                     decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.lock),
                       labelText: 'Mot de Passe',
                       labelStyle: TextStyle(
                           fontFamily: 'Montserrat',
@@ -160,6 +165,7 @@ class _SignupPageState extends State<SignupPage> {
                     keyboardType: TextInputType.text,
                     controller: _adressController,
                     decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.location_on),
                       labelText: 'Addresse',
                       labelStyle: TextStyle(
                           fontFamily: 'Montserrat',
@@ -176,6 +182,7 @@ class _SignupPageState extends State<SignupPage> {
                     keyboardType: TextInputType.text,
                     controller: _codeController,
                     decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.location_city),
                       labelText: 'Postal Code',
                       labelStyle: TextStyle(
                           fontFamily: 'Montserrat',
@@ -192,6 +199,7 @@ class _SignupPageState extends State<SignupPage> {
                     keyboardType: TextInputType.text,
                     controller: _cityController,
                     decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.house_rounded),
                       labelText: 'Cité',
                       labelStyle: TextStyle(
                           fontFamily: 'Montserrat',
