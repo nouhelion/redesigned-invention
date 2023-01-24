@@ -82,6 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                         keyboardType: TextInputType.text,
                         controller: _emailController,
                         decoration: const InputDecoration(
+                          prefixIcon: Icon(Icons.email),
                           labelText: 'Adresse E-mail',
                           labelStyle: TextStyle(
                               fontFamily: 'Montserrat',
@@ -99,6 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                         keyboardType: TextInputType.text,
                         controller: _passwordController,
                         decoration: const InputDecoration(
+                          prefixIcon: Icon(Icons.lock),
                           labelText: 'Mot de Passe',
                           labelStyle: TextStyle(
                               fontFamily: 'Montserrat',
