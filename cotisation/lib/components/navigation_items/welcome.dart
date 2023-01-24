@@ -83,6 +83,32 @@ class _WelcomeState extends State<Welcome> {
         .catchError((error) => print("Failed to add to Database: $error"));
   }
 
+  Future addParticpant() async {
+    // Get a reference to the current user
+    User user = _auth.currentUser!;
+
+    // Get the user's unique identifier
+    String uid = user.uid;
+    CollectionReference _collectionRef =
+        FirebaseFirestore.instance.collection("Voyages");
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ParticipantPage(),
+      ),
+    );
+    return _collectionRef
+        .doc(uid)
+        .collection("items")
+        .doc()
+        .set({
+          "title": _nameController.text.trim(),
+          "description": _descController.text.trim(),
+        })
+        .then((value) => print("Added to Database"))
+        .catchError((error) => print("Failed to add to Database: $error"));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
