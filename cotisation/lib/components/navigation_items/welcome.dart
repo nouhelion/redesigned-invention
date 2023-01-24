@@ -76,7 +76,7 @@ class _WelcomeState extends State<Welcome> {
               Column(
                 children: <Widget>[
                   Text(
-                    "VOYAGES",
+                    "Ajouter un Voyage",
                     style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                   ),],
               ),

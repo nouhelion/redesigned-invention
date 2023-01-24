@@ -47,9 +47,32 @@ class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: FetchData("Voyages"),
+      body: Column(
+        children: <Widget>[
+          Text(
+            
+            "Voyages",
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextFormField(
+              //controller: _nameController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(8))),
+                hintText: '  Titre du voyage',
+              ),
+            ),
+          ),
+          Expanded(
+            child: FetchData("Voyages"),
+          ),
+        ],
       ),
+      // FetchData("Voyages"),
+
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
