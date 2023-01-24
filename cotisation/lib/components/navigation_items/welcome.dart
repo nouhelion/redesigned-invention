@@ -1,8 +1,7 @@
-// ignore_for_file: prefer_const_constructors, avoid_print, prefer_const_literals_to_create_immutables, no_leading_underscores_for_local_identifiers, unused_field, unused_element
+// ignore_for_file: prefer_const_constructors, avoid_print, prefer_const_literals_to_create_immutables, no_leading_underscores_for_local_identifiers, unused_field, unused_element, prefer_interpolation_to_compose_strings, prefer_adjacent_string_concatenation
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cotisation/components/navigation_items/cotisation.dart';
-import 'package:cotisation/components/navigation_items/participant.dart';
 import 'package:cotisation/components/navigation_items/profil.dart';
 import 'package:cotisation/components/navigation_items/search.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,9 +17,10 @@ class Welcome extends StatefulWidget {
   State<Welcome> createState() => _WelcomeState();
 }
 
+final TextEditingController _nameController = TextEditingController();
+final TextEditingController _descController = TextEditingController();
+
 class _WelcomeState extends State<Welcome> {
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _descController = TextEditingController();
   int pageIndex = 0;
   void _onItemTapped(int index) {
     setState(() {
@@ -56,7 +56,7 @@ class _WelcomeState extends State<Welcome> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => participantPage(),
+        builder: (context) => ParticipantPage(),
       ),
     );
     return _collectionRef
@@ -150,6 +150,24 @@ class _WelcomeState extends State<Welcome> {
         unselectedItemColor: Colors.grey,
         selectedItemColor: Colors.indigo,
         onTap: _onItemTapped,
+      ),
+    );
+  }
+}
+
+class ParticipantPage extends StatefulWidget {
+  const ParticipantPage({super.key});
+
+  @override
+  State<ParticipantPage> createState() => _ParticipantPageState();
+}
+
+class _ParticipantPageState extends State<ParticipantPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Détails" + " " + _nameController.text.trim()),
       ),
     );
   }
