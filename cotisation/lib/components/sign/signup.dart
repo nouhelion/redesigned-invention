@@ -52,161 +52,157 @@ class _SignupPageState extends State<SignupPage> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 40),
-          height: MediaQuery.of(context).size.height,
-          width: double.infinity,
+        child: Padding(
+          padding: const EdgeInsets.all(25),
           child: Column(
+            //padding: EdgeInsets.symmetric(horizontal: 60),
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Column(
                 children: <Widget>[
                   Text(
-                    "Sign up",
+                    "Inscription",
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
+                      color: Colors.indigoAccent,
                     ),
                   ),
                   SizedBox(
-                    height: 5,
+                    height: 15,
                   ),
-                  Text(
-                    "Create an account, It's free ",
-                    style: TextStyle(fontSize: 15, color: Colors.grey[700]),
-                  )
                 ],
               ),
               Column(
                 children: <Widget>[
-                  TextField(
+                  TextFormField(
                     keyboardType: TextInputType.text,
                     controller: _nameController,
-                    decoration: InputDecoration(
-                        labelText: 'Full Name',
-                        labelStyle: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.indigo),
-                        )),
+                    decoration: const InputDecoration(
+                      labelText: 'Nom & Prénom',
+                      labelStyle: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                    ),
                   ),
                   SizedBox(
-                    height: 5,
+                    height: 10,
                   ),
-                  TextField(
+                  TextFormField(
                     keyboardType: TextInputType.text,
                     controller: _emailController,
-                    decoration: InputDecoration(
-                        labelText: 'E-mail',
-                        labelStyle: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.indigo),
-                        )),
+                    decoration: const InputDecoration(
+                      labelText: 'Adresse E-mail',
+                      labelStyle: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                    ),
                   ),
                   SizedBox(
-                    height: 5,
+                    height: 10,
                   ),
-                  TextField(
+                  TextFormField(
                     keyboardType: TextInputType.text,
                     controller: _birthdayController,
-                    decoration: InputDecoration(
-                        labelText: 'Birthday',
-                        labelStyle: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.indigo),
-                        )),
+                    decoration: const InputDecoration(
+                      labelText: 'Date de Naissance',
+                      labelStyle: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                    ),
                   ),
                   SizedBox(
-                    height: 5,
+                    height: 10,
                   ),
-                  TextField(
+                  TextFormField(
                     keyboardType: TextInputType.phone,
                     controller: _phoneController,
-                    decoration: InputDecoration(
-                        labelText: 'Phone Number',
-                        labelStyle: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.indigo),
-                        )),
+                    decoration: const InputDecoration(
+                      labelText: 'Numéro de Téléphone',
+                      labelStyle: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                    ),
                   ),
                   SizedBox(
-                    height: 5,
+                    height: 10,
                   ),
-                  TextField(
+                  TextFormField(
                     keyboardType: TextInputType.text,
                     controller: _passwordController,
-                    decoration: InputDecoration(
-                        labelText: 'Password',
-                        labelStyle: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.indigo),
-                        )),
+                    decoration: const InputDecoration(
+                      labelText: 'Mot de Passe',
+                      labelStyle: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                    ),
                     obscureText: true,
                   ),
                   SizedBox(
-                    height: 2.0,
+                    height: 10,
                   ),
-                  TextField(
+                  TextFormField(
                     keyboardType: TextInputType.text,
                     controller: _adressController,
-                    decoration: InputDecoration(
-                        labelText: 'Address',
-                        labelStyle: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.indigo),
-                        )),
+                    decoration: const InputDecoration(
+                      labelText: 'Addresse',
+                      labelStyle: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                    ),
                   ),
                   SizedBox(
-                    height: 2.0,
+                    height: 10,
                   ),
-                  TextField(
+                  TextFormField(
                     keyboardType: TextInputType.text,
                     controller: _codeController,
-                    decoration: InputDecoration(
-                        labelText: 'Postal Code',
-                        labelStyle: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.indigo),
-                        )),
+                    decoration: const InputDecoration(
+                      labelText: 'Postal Code',
+                      labelStyle: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                    ),
                   ),
                   SizedBox(
-                    height: 2.0,
+                    height: 10,
                   ),
-                  TextField(
+                  TextFormField(
                     keyboardType: TextInputType.text,
                     controller: _cityController,
-                    decoration: InputDecoration(
-                        labelText: 'City',
-                        labelStyle: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.indigo),
-                        )),
+                    decoration: const InputDecoration(
+                      labelText: 'Cité',
+                      labelStyle: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                    ),
                   ),
                   SizedBox(
-                    height: 2,
+                    height: 20,
                   ),
                 ],
               ),
@@ -231,7 +227,7 @@ class _SignupPageState extends State<SignupPage> {
                     borderRadius: BorderRadius.circular(50),
                   ),
                   child: Text(
-                    "Sign up",
+                    "Inscription",
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 18,
@@ -240,16 +236,19 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                 ),
               ),
+              SizedBox(
+                height: 20,
+              ),
               RichText(
                 text: TextSpan(
-                  text: "Already have an account?",
+                  text: "Avez-vous déja un compte ?",
                   style: TextStyle(
                     color: Colors.grey[700],
                     fontSize: 16,
                   ),
                   children: [
                     TextSpan(
-                      text: "  Login",
+                      text: "  Connectez-vous",
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 18,

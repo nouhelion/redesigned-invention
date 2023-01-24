@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors, prefer_const_constructors_in_immutables, avoid_print, use_build_context_synchronously, unused_import
 
-
 import 'package:cotisation/components/navigation_items/welcome.dart';
 import 'package:cotisation/components/sign/signup.dart';
 import 'package:flutter/gestures.dart';
@@ -58,51 +57,57 @@ class _LoginPageState extends State<LoginPage> {
                 Column(
                   children: <Widget>[
                     Text(
-                      "Login",
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                      "Connexion",
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.indigoAccent,
+                      ),
                     ),
                     SizedBox(
                       height: 20,
                     ),
                     Text(
-                      "Login to your account",
-                      style: TextStyle(fontSize: 15, color: Colors.grey[700]),
-                    )
+                      "Connectez-vous à votre compte",
+                      style:
+                          TextStyle(fontSize: 15, color: Colors.grey.shade700),
+                    ),
                   ],
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 40),
                   child: Column(
                     children: <Widget>[
-                      TextField(
+                      TextFormField(
                         keyboardType: TextInputType.text,
                         controller: _emailController,
-                        decoration: InputDecoration(
-                            labelText: 'Adresse E-mail',
-                            labelStyle: TextStyle(
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey),
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.indigo),
-                            )),
+                        decoration: const InputDecoration(
+                          labelText: 'Adresse E-mail',
+                          labelStyle: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey),
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8))),
+                        ),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 10,
                       ),
-                      TextField(
+                      TextFormField(
                         keyboardType: TextInputType.text,
                         controller: _passwordController,
-                        decoration: InputDecoration(
-                            labelText: 'Mot de Passe',
-                            labelStyle: TextStyle(
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey),
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.indigo),
-                            )),
+                        decoration: const InputDecoration(
+                          labelText: 'Mot de Passe',
+                          labelStyle: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey),
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8))),
+                        ),
                         obscureText: true,
                       ),
                       SizedBox(
@@ -134,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
                         borderRadius: BorderRadius.circular(50),
                       ),
                       child: Text(
-                        "Login",
+                        "Connexion",
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 18,
@@ -146,14 +151,14 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 RichText(
                   text: TextSpan(
-                    text: "Don't have an account?",
+                    text: "Vous n'avez pas de compte?",
                     style: TextStyle(
                       color: Colors.grey[700],
                       fontSize: 16,
                     ),
                     children: [
                       TextSpan(
-                        text: "   Sign up",
+                        text: "   Inscrivez-vous",
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 18,

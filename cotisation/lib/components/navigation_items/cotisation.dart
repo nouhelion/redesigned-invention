@@ -79,7 +79,7 @@ class _CotisationState extends State<Cotisation> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
-            label: 'Search',
+            label: 'Voayges',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.attach_money),

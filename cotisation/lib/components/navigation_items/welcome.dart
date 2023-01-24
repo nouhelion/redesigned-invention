@@ -135,7 +135,7 @@ class _WelcomeState extends State<Welcome> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
-            label: 'Search',
+            label: 'Voyages',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.attach_money),
