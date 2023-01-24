@@ -2,6 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cotisation/components/navigation_items/cotisation.dart';
+import 'package:cotisation/components/navigation_items/participant.dart';
 import 'package:cotisation/components/navigation_items/profil.dart';
 import 'package:cotisation/components/navigation_items/search.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -52,6 +53,12 @@ class _WelcomeState extends State<Welcome> {
     String uid = user.uid;
     CollectionReference _collectionRef =
         FirebaseFirestore.instance.collection("Voyages");
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => participantPage(),
+      ),
+    );
     return _collectionRef
         .doc(uid)
         .collection("items")
@@ -78,7 +85,8 @@ class _WelcomeState extends State<Welcome> {
                   Text(
                     "Ajouter un Voyage",
                     style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                  ),],
+                  ),
+                ],
               ),
               Row(
                 children: [
@@ -113,7 +121,6 @@ class _WelcomeState extends State<Welcome> {
                   ),
                 ],
               ),
-              
             ],
           )),
         ],
