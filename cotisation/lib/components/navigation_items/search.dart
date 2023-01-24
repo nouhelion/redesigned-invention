@@ -49,11 +49,12 @@ class _SearchState extends State<Search> {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          Text(
-            
-            "Voyages",
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-            
+          Container(
+            margin: EdgeInsets.only(top: 50, bottom: 5),
+            child: Text(
+              "Voyages",
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
