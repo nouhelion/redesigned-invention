@@ -175,6 +175,22 @@ class ParticipantPage extends StatefulWidget {
 }
 
 class _ParticipantPageState extends State<ParticipantPage> {
+  Future<String> getDocumentId() async {
+    // Get a reference to the current user
+    User user = _auth.currentUser!;
+
+    // Get the user's unique identifier
+    String uid = user.uid;
+    var collectionReference = FirebaseFirestore.instance
+        .collection("Voyages")
+        .doc(uid)
+        .collection("items");
+    var query = collectionReference.where("title",
+        isEqualTo: _nameController.text.trim());
+    var querySnapshot = await query.get();
+    return querySnapshot.docs.first.id;
+  }
+
   Future addParticpant() async {
     // Get a reference to the current user
     User user = _auth.currentUser!;
@@ -189,10 +205,11 @@ class _ParticipantPageState extends State<ParticipantPage> {
         builder: (context) => ParticipantPage(),
       ),
     );
+    String documentId = await getDocumentId();
     return _collectionRef
         .doc(uid)
         .collection("items")
-        .doc()
+        .doc(documentId)
         .set({
           "Voyage": _nameController.text.trim(),
           "Participant1": _parti1Controller.text.trim(),
