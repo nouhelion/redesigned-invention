@@ -202,7 +202,7 @@ class _ParticipantPageState extends State<ParticipantPage> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => ParticipantPage(),
+        builder: (context) => Welcome(),
       ),
     );
     String documentId = await getDocumentId();
