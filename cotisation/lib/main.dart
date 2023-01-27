@@ -48,7 +48,7 @@ class HomePage extends StatelessWidget {
               Column(
                 children: <Widget>[
                   Text(
-                    "Welcome",
+                    "Bienvenue",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 30,
@@ -58,7 +58,7 @@ class HomePage extends StatelessWidget {
                     height: 20,
                   ),
                   Text(
-                    "Your shopping destination with a click of a button",
+                    "Gérer vos cotisations en toute simplicité",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.grey[700],

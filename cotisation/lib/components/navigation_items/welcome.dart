@@ -83,32 +83,6 @@ class _WelcomeState extends State<Welcome> {
         .catchError((error) => print("Failed to add to Database: $error"));
   }
 
-  /*Future addParticpant() async {
-    // Get a reference to the current user
-    User user = _auth.currentUser!;
-
-    // Get the user's unique identifier
-    String uid = user.uid;
-    CollectionReference _collectionRef =
-        FirebaseFirestore.instance.collection("Voyages");
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ParticipantPage(),
-      ),
-    );
-    return _collectionRef
-        .doc(uid)
-        .collection("items")
-        .doc()
-        .set({
-          "title": _nameController.text.trim(),
-          "description": _descController.text.trim(),
-        })
-        .then((value) => print("Added to Database"))
-        .catchError((error) => print("Failed to add to Database: $error"));
-  }*/
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -201,6 +175,39 @@ class ParticipantPage extends StatefulWidget {
 }
 
 class _ParticipantPageState extends State<ParticipantPage> {
+  Future addParticpant() async {
+    // Get a reference to the current user
+    User user = _auth.currentUser!;
+
+    // Get the user's unique identifier
+    String uid = user.uid;
+    CollectionReference _collectionRef =
+        FirebaseFirestore.instance.collection("Participants");
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ParticipantPage(),
+      ),
+    );
+    return _collectionRef
+        .doc(uid)
+        .collection("items")
+        .doc()
+        .set({
+          "Voyage": _nameController.text.trim(),
+          "Participant1": _parti1Controller.text.trim(),
+          "Tache1": _job1Controller.text.trim(),
+          "Participant2": _parti2Controller.text.trim(),
+          "Tache2": _job2Controller.text.trim(),
+          "Participant3": _parti3Controller.text.trim(),
+          "Tache3": _job3Controller.text.trim(),
+          "Participant4": _parti4Controller.text.trim(),
+          "Tache4": _job4Controller.text.trim(),
+        })
+        .then((value) => print("Added to Database"))
+        .catchError((error) => print("Failed to add to Database: $error"));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -361,7 +368,7 @@ class _ParticipantPageState extends State<ParticipantPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: addParticpant,
         tooltip: 'Add',
         child: Icon(Icons.add),
       ),
