@@ -206,7 +206,53 @@ class _ParticipantPageState extends State<ParticipantPage> {
       ),
     );
     String documentId = await getDocumentId();
-    return _collectionRef
+    
+    DocumentReference participant1 = _collectionRef
+        .doc(uid)
+        .collection("items")
+        .doc(documentId)
+        .collection("participants")
+        .doc("Participant1");
+    DocumentReference participant2 = _collectionRef
+        .doc(uid)
+        .collection("items")
+        .doc(documentId)
+        .collection("participants")
+        .doc("Participant2");
+    DocumentReference participant3 = _collectionRef
+        .doc(uid)
+        .collection("items")
+        .doc(documentId)
+        .collection("participants")
+        .doc("Participant3");
+    DocumentReference participant4 = _collectionRef
+        .doc(uid)
+        .collection("items")
+        .doc(documentId)
+        .collection("participants")
+        .doc("Participant4");
+
+    await Future.wait([
+      participant1.set({
+        "Nom": _parti1Controller.text.trim(),
+        "Tache": _job1Controller.text.trim()
+      }),
+      participant2.set({
+        "Nom": _parti2Controller.text.trim(),
+        "Tache": _job2Controller.text.trim()
+      }),
+      participant3.set({
+        "Nom": _parti3Controller.text.trim(),
+        "Tache": _job3Controller.text.trim()
+      }),
+      participant4.set({
+        "Nom": _parti4Controller.text.trim(),
+        "Tache": _job4Controller.text.trim()
+      }),
+    ]);
+    return 'Data added successfully!';
+
+    /*return _collectionRef
         .doc(uid)
         .collection("items")
         .doc(documentId)
@@ -224,7 +270,7 @@ class _ParticipantPageState extends State<ParticipantPage> {
           "Tache4": _job4Controller.text.trim(),
         })
         .then((value) => print("Added to Database"))
-        .catchError((error) => print("Failed to add to Database: $error"));
+        .catchError((error) => print("Failed to add to Database: $error"));*/
   }
 
   @override
