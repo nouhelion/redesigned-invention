@@ -175,6 +175,11 @@ class ParticipantPage extends StatefulWidget {
 }
 
 class _ParticipantPageState extends State<ParticipantPage> {
+  String dropdownValue1 = 'Tâche';
+  String dropdownValue2 = 'Tâche';
+  String dropdownValue3 = 'Tâche';
+  String dropdownValue4 = 'Tâche';
+
   Future<String> getDocumentId() async {
     // Get a reference to the current user
     User user = _auth.currentUser!;
@@ -233,22 +238,14 @@ class _ParticipantPageState extends State<ParticipantPage> {
         .doc("Participant4");
 
     await Future.wait([
-      participant1.set({
-        "Nom": _parti1Controller.text.trim(),
-        "Tache": _job1Controller.text.trim()
-      }),
-      participant2.set({
-        "Nom": _parti2Controller.text.trim(),
-        "Tache": _job2Controller.text.trim()
-      }),
-      participant3.set({
-        "Nom": _parti3Controller.text.trim(),
-        "Tache": _job3Controller.text.trim()
-      }),
-      participant4.set({
-        "Nom": _parti4Controller.text.trim(),
-        "Tache": _job4Controller.text.trim()
-      }),
+      participant1
+          .set({"Nom": _parti1Controller.text.trim(), "Tache": dropdownValue1}),
+      participant2
+          .set({"Nom": _parti2Controller.text.trim(), "Tache": dropdownValue2}),
+      participant3
+          .set({"Nom": _parti3Controller.text.trim(), "Tache": dropdownValue3}),
+      participant4
+          .set({"Nom": _parti4Controller.text.trim(), "Tache": dropdownValue4}),
     ]);
     return 'Data added successfully!';
   }
@@ -293,18 +290,45 @@ class _ParticipantPageState extends State<ParticipantPage> {
                     SizedBox(
                       height: 15,
                     ),
-                    Expanded(
+                    SizedBox(
+                      width: 220,
                       child: ListTile(
-                        subtitle: TextFormField(
-                          controller: _job1Controller,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8))),
-                            hintText: '  La tâche',
-                          ),
+                          subtitle: DropdownButtonFormField(
+                        decoration: const InputDecoration(
+                          prefixIcon: Icon(Icons.checklist_rounded),
+                          /*labelText: 'Tâche',
+                labelStyle: TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey),*/
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8))),
                         ),
-                      ),
+                        dropdownColor: Colors.white,
+                        value: dropdownValue1,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            dropdownValue1 = newValue!;
+                          });
+                        },
+                        items: <String>[
+                          'Tâche',
+                          'Nourriture',
+                          'Transport',
+                          'Utilité',
+                          'Urgence',
+                          'Médicaments'
+                        ].map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(
+                              value,
+                              style: TextStyle(fontSize: 15),
+                            ),
+                          );
+                        }).toList(),
+                      )),
                     ),
                   ],
                 ),
@@ -326,18 +350,45 @@ class _ParticipantPageState extends State<ParticipantPage> {
                     SizedBox(
                       height: 15,
                     ),
-                    Expanded(
+                    SizedBox(
+                      width: 220,
                       child: ListTile(
-                        subtitle: TextFormField(
-                          controller: _job2Controller,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8))),
-                            hintText: '   La tâche',
-                          ),
+                          subtitle: DropdownButtonFormField(
+                        decoration: const InputDecoration(
+                          prefixIcon: Icon(Icons.checklist_rounded),
+                          /*labelText: 'Tâche',
+                labelStyle: TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey),*/
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8))),
                         ),
-                      ),
+                        dropdownColor: Colors.white,
+                        value: dropdownValue2,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            dropdownValue2 = newValue!;
+                          });
+                        },
+                        items: <String>[
+                          'Tâche',
+                          'Nourriture',
+                          'Transport',
+                          'Utilité',
+                          'Urgence',
+                          'Médicaments'
+                        ].map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(
+                              value,
+                              style: TextStyle(fontSize: 15),
+                            ),
+                          );
+                        }).toList(),
+                      )),
                     ),
                   ],
                 ),
@@ -351,7 +402,7 @@ class _ParticipantPageState extends State<ParticipantPage> {
                             border: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(8))),
-                            hintText: '   Nom du participant',
+                            hintText: '  Nom du participant',
                           ),
                         ),
                       ),
@@ -359,18 +410,45 @@ class _ParticipantPageState extends State<ParticipantPage> {
                     SizedBox(
                       height: 15,
                     ),
-                    Expanded(
+                    SizedBox(
+                      width: 220,
                       child: ListTile(
-                        subtitle: TextFormField(
-                          controller: _job3Controller,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8))),
-                            hintText: '   La tâche',
-                          ),
+                          subtitle: DropdownButtonFormField(
+                        decoration: const InputDecoration(
+                          prefixIcon: Icon(Icons.checklist_rounded),
+                          /*labelText: 'Tâche',
+                labelStyle: TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey),*/
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8))),
                         ),
-                      ),
+                        dropdownColor: Colors.white,
+                        value: dropdownValue3,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            dropdownValue3 = newValue!;
+                          });
+                        },
+                        items: <String>[
+                          'Tâche',
+                          'Nourriture',
+                          'Transport',
+                          'Utilité',
+                          'Urgence',
+                          'Médicaments'
+                        ].map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(
+                              value,
+                              style: TextStyle(fontSize: 15),
+                            ),
+                          );
+                        }).toList(),
+                      )),
                     ),
                   ],
                 ),
@@ -384,7 +462,7 @@ class _ParticipantPageState extends State<ParticipantPage> {
                             border: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(8))),
-                            hintText: '   Nom du participant',
+                            hintText: '  Nom du participant',
                           ),
                         ),
                       ),
@@ -392,18 +470,45 @@ class _ParticipantPageState extends State<ParticipantPage> {
                     SizedBox(
                       height: 15,
                     ),
-                    Expanded(
+                    SizedBox(
+                      width: 220,
                       child: ListTile(
-                        subtitle: TextFormField(
-                          controller: _job4Controller,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8))),
-                            hintText: '   La tâche',
-                          ),
+                          subtitle: DropdownButtonFormField(
+                        decoration: const InputDecoration(
+                          prefixIcon: Icon(Icons.checklist_rounded),
+                          /*labelText: 'Tâche',
+                labelStyle: TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey),*/
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8))),
                         ),
-                      ),
+                        dropdownColor: Colors.white,
+                        value: dropdownValue4,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            dropdownValue4 = newValue!;
+                          });
+                        },
+                        items: <String>[
+                          'Tâche',
+                          'Nourriture',
+                          'Transport',
+                          'Utilité',
+                          'Urgence',
+                          'Médicaments'
+                        ].map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(
+                              value,
+                              style: TextStyle(fontSize: 15),
+                            ),
+                          );
+                        }).toList(),
+                      )),
                     ),
                   ],
                 ),
