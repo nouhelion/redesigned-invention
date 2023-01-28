@@ -206,7 +206,7 @@ class _ParticipantPageState extends State<ParticipantPage> {
       ),
     );
     String documentId = await getDocumentId();
-    
+
     DocumentReference participant1 = _collectionRef
         .doc(uid)
         .collection("items")
@@ -251,26 +251,6 @@ class _ParticipantPageState extends State<ParticipantPage> {
       }),
     ]);
     return 'Data added successfully!';
-
-    /*return _collectionRef
-        .doc(uid)
-        .collection("items")
-        .doc(documentId)
-        .collection("participants")
-        .doc()
-        .set({
-          //"Voyage": _nameController.text.trim(),
-          "Participant1": _parti1Controller.text.trim(),
-          "Tache1": _job1Controller.text.trim(),
-          "Participant2": _parti2Controller.text.trim(),
-          "Tache2": _job2Controller.text.trim(),
-          "Participant3": _parti3Controller.text.trim(),
-          "Tache3": _job3Controller.text.trim(),
-          "Participant4": _parti4Controller.text.trim(),
-          "Tache4": _job4Controller.text.trim(),
-        })
-        .then((value) => print("Added to Database"))
-        .catchError((error) => print("Failed to add to Database: $error"));*/
   }
 
   @override
