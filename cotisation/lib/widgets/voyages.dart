@@ -49,31 +49,49 @@ Widget FetchData(String collectionName) {
                   data['description'],
                 ),
                 trailing: SizedBox(
-                  width: 50,
+                  width: 100,
                   child: Row(
                     children: <Widget>[
-                      GestureDetector(
-                        child: Icon(
-                          Icons.delete,
-                          color: Colors.red[300],
+                      Container(
+                        margin: EdgeInsets.only(
+                            right: 10), // add space between the icons
+                        child: GestureDetector(
+                          child: Icon(
+                            Icons.delete,
+                            color: Colors.red[300],
+                          ),
+                          onTap: () {
+                            FirebaseFirestore.instance
+                                .collection(collectionName)
+                                .doc(FirebaseAuth.instance.currentUser!.uid)
+                                .collection("items")
+                                .doc(documentSnapshot.id)
+                                .delete();
+                          },
                         ),
-                        onTap: () {
-                          FirebaseFirestore.instance
-                              .collection(collectionName)
-                              .doc(FirebaseAuth.instance.currentUser!.uid)
-                              .collection("items")
-                              .doc(documentSnapshot.id)
-                              .delete();
-                        },
                       ),
-                      GestureDetector(
-                        child: Icon(
-                          Icons.edit,
-                          color: Colors.blue[300],
+                      Container(
+                        margin: EdgeInsets.only(right: 10),
+                        child: GestureDetector(
+                          child: Icon(
+                            Icons.edit,
+                            color: Colors.blue[300],
+                          ),
+                          onTap: () {
+                            //Your modification code here
+                          },
                         ),
-                        onTap: () {
-                          //Your modification code here
-                        },
+                      ),
+                      Container(
+                        child: GestureDetector(
+                          child: Icon(
+                            Icons.visibility,
+                            color: Colors.green[300],
+                          ),
+                          onTap: () {
+                            //Your View Content code here
+                          },
+                        ),
                       ),
                     ],
                   ),
