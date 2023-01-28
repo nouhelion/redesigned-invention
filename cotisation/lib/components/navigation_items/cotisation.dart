@@ -15,7 +15,6 @@ class Cotisation extends StatefulWidget {
 
 class _CotisationState extends State<Cotisation> {
   int pageIndex = 2;
-  String dropdownValue = 'Tâche';
 
   void _onItemTapped(int index) {
     setState(() {
@@ -73,42 +72,6 @@ class _CotisationState extends State<Cotisation> {
               },
               child: Text('Logout'),
             ),
-            DropdownButtonFormField(
-              
-              decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.checklist_rounded),
-                /*labelText: 'Tâche',
-                labelStyle: TextStyle(
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey),*/
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8))),
-              ),
-              dropdownColor: Colors.white,
-              value: dropdownValue,
-              onChanged: (String? newValue) {
-                setState(() {
-                  dropdownValue = newValue!;
-                });
-              },
-              items: <String>[
-                'Tâche',
-                'Nourriture',
-                'Transport',
-                'Utilité',
-                'Urgence',
-                'Médicaments'
-              ].map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(
-                    value,
-                    style: TextStyle(fontSize: 15),
-                  ),
-                );
-              }).toList(),
-            )
           ],
         ),
       ),
