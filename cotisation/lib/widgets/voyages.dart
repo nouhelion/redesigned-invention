@@ -48,19 +48,35 @@ Widget FetchData(String collectionName) {
                 title: Text(
                   data['description'],
                 ),
-                trailing: GestureDetector(
-                  child: Icon(
-                    Icons.delete,
-                    color: Colors.red[300],
+                trailing: SizedBox(
+                  width: 50,
+                  child: Row(
+                    children: <Widget>[
+                      GestureDetector(
+                        child: Icon(
+                          Icons.delete,
+                          color: Colors.red[300],
+                        ),
+                        onTap: () {
+                          FirebaseFirestore.instance
+                              .collection(collectionName)
+                              .doc(FirebaseAuth.instance.currentUser!.uid)
+                              .collection("items")
+                              .doc(documentSnapshot.id)
+                              .delete();
+                        },
+                      ),
+                      GestureDetector(
+                        child: Icon(
+                          Icons.edit,
+                          color: Colors.blue[300],
+                        ),
+                        onTap: () {
+                          //Your modification code here
+                        },
+                      ),
+                    ],
                   ),
-                  onTap: () {
-                    FirebaseFirestore.instance
-                        .collection(collectionName)
-                        .doc(FirebaseAuth.instance.currentUser!.uid)
-                        .collection("items")
-                        .doc(documentSnapshot.id)
-                        .delete();
-                  },
                 ),
               ),
             );
