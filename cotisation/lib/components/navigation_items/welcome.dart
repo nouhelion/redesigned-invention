@@ -210,7 +210,7 @@ class _ParticipantPageState extends State<ParticipantPage> {
         .doc(uid)
         .collection("items")
         .doc(documentId)
-        .collection("particpants")
+        .collection("participants")
         .doc()
         .set({
           //"Voyage": _nameController.text.trim(),

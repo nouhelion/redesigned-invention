@@ -68,7 +68,7 @@ class _SearchState extends State<Search> {
             ),
           ),
           Expanded(
-            child: FetchData("Voyages"),
+            child: FetchVoyage("Voyages"),
           ),
         ],
       ),
