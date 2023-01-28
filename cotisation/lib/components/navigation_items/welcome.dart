@@ -56,7 +56,15 @@ class _WelcomeState extends State<Welcome> {
       }
     });
   }
-
+  
+  void _submitText() {
+    // Send the text to the database
+    print("Added to Database");
+    // Clear the text in the TextField
+    _nameController.clear();
+    _descController.clear();
+    
+  }
   Future addVoyage() async {
     // Get a reference to the current user
     User user = _auth.currentUser!;
@@ -79,7 +87,7 @@ class _WelcomeState extends State<Welcome> {
           "title": _nameController.text.trim(),
           "description": _descController.text.trim(),
         })
-        .then((value) => print("Added to Database"))
+        .then((value) => _submitText())
         .catchError((error) => print("Failed to add to Database: $error"));
   }
 
@@ -190,6 +198,20 @@ class _ParticipantPageState extends State<ParticipantPage> {
     var querySnapshot = await query.get();
     return querySnapshot.docs.first.id;
   }
+
+  /*void _submitText() {
+    // Send the text to the database
+    print("Added to Database");
+    // Clear the text in the TextField
+    _parti1Controller.clear();
+    _parti2Controller.clear();
+    _parti3Controller.clear();
+    _parti4Controller.clear();
+    _job1Controller.clear();
+    _job2Controller.clear();
+    _job3Controller.clear();
+    _job4Controller.clear();
+  }*/
 
   Future addParticpant() async {
     // Get a reference to the current user
