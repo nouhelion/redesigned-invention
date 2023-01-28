@@ -56,15 +56,7 @@ class _WelcomeState extends State<Welcome> {
       }
     });
   }
-  
-  void _submitText() {
-    // Send the text to the database
-    print("Added to Database");
-    // Clear the text in the TextField
-    _nameController.clear();
-    _descController.clear();
-    
-  }
+
   Future addVoyage() async {
     // Get a reference to the current user
     User user = _auth.currentUser!;
@@ -87,7 +79,7 @@ class _WelcomeState extends State<Welcome> {
           "title": _nameController.text.trim(),
           "description": _descController.text.trim(),
         })
-        .then((value) => _submitText())
+        .then((value) => print("Added to Database"))
         .catchError((error) => print("Failed to add to Database: $error"));
   }
 
@@ -199,20 +191,6 @@ class _ParticipantPageState extends State<ParticipantPage> {
     return querySnapshot.docs.first.id;
   }
 
-  /*void _submitText() {
-    // Send the text to the database
-    print("Added to Database");
-    // Clear the text in the TextField
-    _parti1Controller.clear();
-    _parti2Controller.clear();
-    _parti3Controller.clear();
-    _parti4Controller.clear();
-    _job1Controller.clear();
-    _job2Controller.clear();
-    _job3Controller.clear();
-    _job4Controller.clear();
-  }*/
-
   Future addParticpant() async {
     // Get a reference to the current user
     User user = _auth.currentUser!;
@@ -220,7 +198,7 @@ class _ParticipantPageState extends State<ParticipantPage> {
     // Get the user's unique identifier
     String uid = user.uid;
     CollectionReference _collectionRef =
-        FirebaseFirestore.instance.collection("Participants");
+        FirebaseFirestore.instance.collection("Voyages");
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
@@ -232,8 +210,10 @@ class _ParticipantPageState extends State<ParticipantPage> {
         .doc(uid)
         .collection("items")
         .doc(documentId)
+        .collection("particpants")
+        .doc()
         .set({
-          "Voyage": _nameController.text.trim(),
+          //"Voyage": _nameController.text.trim(),
           "Participant1": _parti1Controller.text.trim(),
           "Tache1": _job1Controller.text.trim(),
           "Participant2": _parti2Controller.text.trim(),
