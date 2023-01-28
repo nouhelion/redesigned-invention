@@ -17,7 +17,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-
+  final bool _isHidden = true;
   @override
   void dispose() {
     _emailController.dispose();
@@ -110,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(8))),
                         ),
-                        obscureText: true,
+                        obscureText: _isHidden,
                       ),
                       SizedBox(
                         height: 5.0,
