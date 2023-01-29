@@ -287,6 +287,7 @@ class _ViewPageState extends State<ViewPage> {
                       enabled: false,
                       controller: _parti1Controller,
                       decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.person),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(8))),
                       ),
@@ -355,6 +356,7 @@ class _ViewPageState extends State<ViewPage> {
                       enabled: false,
                       controller: _parti2Controller,
                       decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.person),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(8))),
                       ),
@@ -423,6 +425,7 @@ class _ViewPageState extends State<ViewPage> {
                       enabled: false,
                       controller: _parti3Controller,
                       decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.person),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(8))),
                       ),
@@ -491,6 +494,7 @@ class _ViewPageState extends State<ViewPage> {
                       enabled: false,
                       controller: _parti4Controller,
                       decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.person),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(8))),
                       ),
