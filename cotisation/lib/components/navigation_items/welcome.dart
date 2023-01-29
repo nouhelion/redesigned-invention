@@ -107,10 +107,11 @@ class _WelcomeState extends State<Welcome> {
                       subtitle: TextFormField(
                         controller: _nameController,
                         decoration: const InputDecoration(
+                          prefixIcon: Icon(Icons.tire_repair_rounded),
                           border: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(8))),
-                          hintText: '  Titre du voyage',
+                          hintText: '  Titre',
                         ),
                       ),
                     ),
@@ -123,10 +124,11 @@ class _WelcomeState extends State<Welcome> {
                       subtitle: TextFormField(
                         controller: _descController,
                         decoration: const InputDecoration(
+                          prefixIcon: Icon(Icons.list_alt),
                           border: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(8))),
-                          hintText: '  Description du voyage',
+                          hintText: '  Description',
                         ),
                       ),
                     ),
@@ -236,7 +238,7 @@ class _ParticipantPageState extends State<ParticipantPage> {
         .doc(documentId)
         .collection("participants")
         .doc("Participant4");
-    int coti1,coti2,coti3,coti4;
+    //int coti1,coti2,coti3,coti4;
     await Future.wait([
       participant1
           .set({"Nom": _parti1Controller.text.trim(), "Tache": dropdownValue1}),
