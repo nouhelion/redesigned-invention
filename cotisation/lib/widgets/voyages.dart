@@ -7,31 +7,13 @@ import 'package:flutter/material.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 User user = _auth.currentUser!;
-
+final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 // Get the user's unique identifier
 String uid = user.uid;
 CollectionReference _collectionRef =
     FirebaseFirestore.instance.collection("Voyages");
 
-Future<String> getDocumentId(String name) async {
-  // Get a reference to the current user
-  User user = _auth.currentUser!;
-
-  // Get the user's unique identifier
-  String uid = user.uid;
-  var collectionReference = FirebaseFirestore.instance
-      .collection("Voyages")
-      .doc(uid)
-      .collection("items");
-  var query = collectionReference.where("title", isEqualTo: name);
-  var querySnapshot = await query.get();
-  return querySnapshot.docs.first.id;
-}
 //String documentId = await getDocumentId();
-
-Future<void> View(String name) async {
-  String documentId = await getDocumentId(name);
-}
 
 Widget FetchVoyage(String collectionName) {
   return StreamBuilder(
@@ -134,53 +116,6 @@ Widget FetchVoyage(String collectionName) {
   );
 }
 
-/*Widget FetchParticipants(String collectionName) {
-  return StreamBuilder(
-    stream: _collectionRef
-        .doc(uid)
-        .collection("items")
-        .doc()
-        .collection("participants")
-        .snapshots(),
-    builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-      if (snapshot.hasError) {
-        return const Center(
-          child: Text("Something is wrong"),
-        );
-      }
-
-      return ListView.builder(
-          itemCount: snapshot.data == null ? 0 : snapshot.data!.docs.length,
-          itemBuilder: (_, index) {
-            DocumentSnapshot documentSnapshot = snapshot.data!.docs[index];
-            Map<String, dynamic> data =
-                documentSnapshot.data()! as Map<String, dynamic>;
-            return Card(
-              elevation: 5,
-              child: ListTile(
-                leading: Text(
-                  data['title'],
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.indigoAccent),
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ViewPage(),
-                    ),
-                  );
-                },
-                title: Text(
-                  data['description'],
-                ),
-              ),
-            );
-          });
-    },
-  );
-}*/
-
 class ViewPage extends StatefulWidget {
   final Map<String, dynamic> data;
   const ViewPage({Key? key, required this.data}) : super(key: key);
@@ -234,6 +169,21 @@ class _ViewPageState extends State<ViewPage> {
   }
 }
 
+final TextEditingController _nameController = TextEditingController();
+final TextEditingController _descController = TextEditingController();
+
+final TextEditingController _parti1Controller = TextEditingController();
+
+final TextEditingController _parti2Controller = TextEditingController();
+
+final TextEditingController _parti3Controller = TextEditingController();
+
+final TextEditingController _parti4Controller = TextEditingController();
+String dropdownValue1 = 'Tâche1';
+String dropdownValue2 = 'Tâche2';
+String dropdownValue3 = 'Tâche3';
+String dropdownValue4 = 'Tâche4';
+
 class ModifyPage extends StatefulWidget {
   final Map<String, dynamic> data;
   const ModifyPage({Key? key, required this.data}) : super(key: key);
@@ -243,6 +193,93 @@ class ModifyPage extends StatefulWidget {
 }
 
 class _ModifyPageState extends State<ModifyPage> {
+  Future<String> getDocumentId() async {
+    // Get a reference to the current user
+    User user = _auth.currentUser!;
+
+    // Get the user's unique identifier
+    String uid = user.uid;
+    var collectionReference = FirebaseFirestore.instance
+        .collection("Voyages")
+        .doc(uid)
+        .collection("items");
+    var query =
+        collectionReference.where("title", isEqualTo: widget.data['title']);
+    var querySnapshot = await query.get();
+    return querySnapshot.docs.first.id;
+  }
+
+  Future<void> getCurrentVoyage() async {
+    // Get a reference to the current user
+    User user = _auth.currentUser!;
+
+    // Get the user's unique identifier
+    String uid = user.uid;
+
+    // Get a reference to the 'users' collection
+    CollectionReference usersCollection =
+        _firestore.collection('Voyages').doc(uid).collection("items");
+    String documentId = await getDocumentId();
+    // Get a reference to the document with the user's data
+    DocumentReference voyageDocument = usersCollection.doc(documentId);
+
+    // Get the voyage from the document
+    voyageDocument.get().then((snapshot) async {
+      Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>;
+      // Set the data as the initial value of the TextEditingController
+      _nameController.text = data['title'];
+      _descController.text = data['description'];
+    });
+
+    // Get the participants from the document
+    voyageDocument
+        .collection("participants")
+        .doc("Participant1")
+        .get()
+        .then((snapshot) async {
+      Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>;
+      // Set the data as the initial value of the TextEditingController
+      _parti1Controller.text = data['Nom'];
+      dropdownValue1 = data['Tache'];
+    });
+    voyageDocument
+        .collection("participants")
+        .doc("Participant2")
+        .get()
+        .then((snapshot) async {
+      Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>;
+      // Set the data as the initial value of the TextEditingController
+      _parti2Controller.text = data['Nom'];
+      //dropdownValue2 = data['Tache'];
+    });
+    voyageDocument
+        .collection("participants")
+        .doc("Participant3")
+        .get()
+        .then((snapshot) async {
+      Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>;
+      // Set the data as the initial value of the TextEditingController
+      _parti3Controller.text = data['Nom'];
+      //dropdownValue3 = data['Tache'];
+    });
+    voyageDocument
+        .collection("participants")
+        .doc("Participant4")
+        .get()
+        .then((snapshot) async {
+      Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>;
+      // Set the data as the initial value of the TextEditingController
+      _parti4Controller.text = data['Nom'];
+      //dropdownValue4 = data['Tache'];
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentVoyage();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -250,38 +287,277 @@ class _ModifyPageState extends State<ModifyPage> {
         backgroundColor: Colors.indigo[400],
         title: Text('Modification du voyage ' + widget.data['title']),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'participants',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 30,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            widget.data['title'],
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 30,
+            ),
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: ListTile(
+                  subtitle: TextFormField(
+                    enabled: false,
+                    controller: _nameController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                    ),
+                  ),
+                ),
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              'You are logged in',
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 15,
+              SizedBox(
+                height: 5,
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                FirebaseAuth.instance.signOut();
-              },
-              child: Text('Logout'),
-            ),
-          ],
-        ),
+              SizedBox(
+                width: 220,
+                child: ListTile(
+                  subtitle: TextFormField(
+                    enabled: false,
+                    controller: _descController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: ListTile(
+                  subtitle: TextFormField(
+                    controller: _parti1Controller,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              SizedBox(
+                width: 220,
+                child: ListTile(
+                    subtitle: DropdownButtonFormField(
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.checklist_rounded),
+                    /*labelText: 'Tâche',
+            labelStyle: TextStyle(
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey),*/
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8))),
+                  ),
+                  dropdownColor: Colors.white,
+                  value: dropdownValue1,
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      dropdownValue1 = newValue!;
+                    });
+                  },
+                  items: <String>[
+                    'Tâche1',
+                    'Nourriture',
+                    'Transport',
+                    'Utilité',
+                    'Urgence',
+                    'Médicaments'
+                  ].map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(
+                        value,
+                        style: TextStyle(fontSize: 15),
+                      ),
+                    );
+                  }).toList(),
+                )),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: ListTile(
+                  subtitle: TextFormField(
+                    controller: _parti2Controller,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              SizedBox(
+                width: 220,
+                child: ListTile(
+                    subtitle: DropdownButtonFormField(
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.checklist_rounded),
+                    /*labelText: 'Tâche',
+            labelStyle: TextStyle(
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey),*/
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8))),
+                  ),
+                  dropdownColor: Colors.white,
+                  value: dropdownValue2,
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      dropdownValue2 = newValue!;
+                    });
+                  },
+                  items: <String>[
+                    'Tâche2',
+                    'Nourriture',
+                    'Transport',
+                    'Utilité',
+                    'Urgence',
+                    'Médicaments'
+                  ].map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(
+                        value,
+                        style: TextStyle(fontSize: 15),
+                      ),
+                    );
+                  }).toList(),
+                )),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: ListTile(
+                  subtitle: TextFormField(
+                    controller: _parti3Controller,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              SizedBox(
+                width: 220,
+                child: ListTile(
+                    subtitle: DropdownButtonFormField(
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.checklist_rounded),
+                    /*labelText: 'Tâche',
+            labelStyle: TextStyle(
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey),*/
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8))),
+                  ),
+                  dropdownColor: Colors.white,
+                  value: dropdownValue3,
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      dropdownValue3 = newValue!;
+                    });
+                  },
+                  items: <String>[
+                    'Tâche3',
+                    'Nourriture',
+                    'Transport',
+                    'Utilité',
+                    'Urgence',
+                    'Médicaments'
+                  ].map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(
+                        value,
+                        style: TextStyle(fontSize: 15),
+                      ),
+                    );
+                  }).toList(),
+                )),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: ListTile(
+                  subtitle: TextFormField(
+                    controller: _parti4Controller,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              SizedBox(
+                width: 220,
+                child: ListTile(
+                    subtitle: DropdownButtonFormField(
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.checklist_rounded),
+                    /*labelText: 'Tâche',
+            labelStyle: TextStyle(
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey),*/
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8))),
+                  ),
+                  dropdownColor: Colors.white,
+                  value: dropdownValue4,
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      dropdownValue4 = newValue!;
+                    });
+                  },
+                  items: <String>[
+                    'Tâche4',
+                    'Nourriture',
+                    'Transport',
+                    'Utilité',
+                    'Urgence',
+                    'Médicaments'
+                  ].map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(
+                        value,
+                        style: TextStyle(fontSize: 15),
+                      ),
+                    );
+                  }).toList(),
+                )),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
