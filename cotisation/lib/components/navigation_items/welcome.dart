@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, avoid_print, prefer_const_literals_to_create_immutables, no_leading_underscores_for_local_identifiers, unused_field, unused_element, prefer_interpolation_to_compose_strings, prefer_adjacent_string_concatenation
+// ignore_for_file: prefer_const_constructors, avoid_print, prefer_const_literals_to_create_immutables, no_leading_underscores_for_local_identifiers, unused_field, unused_element, prefer_interpolation_to_compose_strings, prefer_adjacent_string_concatenation, unused_local_variable, unnecessary_null_comparison
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cotisation/components/navigation_items/cotisation.dart';
@@ -239,23 +239,45 @@ class _ParticipantPageState extends State<ParticipantPage> {
         .doc(documentId)
         .collection("participants")
         .doc("Participant4");
-    //int coti1,coti2,coti3,coti4;
-    bool isTaskInList = false;
-    for (var task in tasks) {
-      /*if (dropdownValue1 == task.task[0]) {
-        isTaskInList = true;
-        break;
-      }*/
-    }
+
+    int coti1 = 20, coti2 = 20, coti3 = 20, coti4 = 20;
+    Task task1 = tasks.firstWhere((task) => task.task == dropdownValue1);
+
+    coti1 = task1.amount!;
+
+    Task task2 = tasks.firstWhere((task) => task.task == dropdownValue2);
+
+    coti2 = task2.amount!;
+
+    Task task3 = tasks.firstWhere((task) => task.task == dropdownValue3);
+
+    coti3 = task3.amount!;
+
+    Task task4 = tasks.firstWhere((task) => task.task == dropdownValue4);
+
+    coti4 = task4.amount!;
+
     await Future.wait([
-      participant1
-          .set({"Nom": _parti1Controller.text.trim(), "Tache": dropdownValue1}),
-      participant2
-          .set({"Nom": _parti2Controller.text.trim(), "Tache": dropdownValue2}),
-      participant3
-          .set({"Nom": _parti3Controller.text.trim(), "Tache": dropdownValue3}),
-      participant4
-          .set({"Nom": _parti4Controller.text.trim(), "Tache": dropdownValue4}),
+      participant1.set({
+        "Nom": _parti1Controller.text.trim(),
+        "Tache": dropdownValue1,
+        "Cotisation": coti1
+      }),
+      participant2.set({
+        "Nom": _parti2Controller.text.trim(),
+        "Tache": dropdownValue2,
+        "Cotisation": coti2
+      }),
+      participant3.set({
+        "Nom": _parti3Controller.text.trim(),
+        "Tache": dropdownValue3,
+        "Cotisation": coti3
+      }),
+      participant4.set({
+        "Nom": _parti4Controller.text.trim(),
+        "Tache": dropdownValue4,
+        "Cotisation": coti4
+      }),
     ]);
     return 'Data added successfully!';
   }
