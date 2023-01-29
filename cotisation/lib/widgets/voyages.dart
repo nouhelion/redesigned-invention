@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names, prefer_const_constructors, unused_import, avoid_unnecessary_containers, unused_local_variable
+// ignore_for_file: non_constant_identifier_names, prefer_const_constructors, unused_import, avoid_unnecessary_containers, unused_local_variable, prefer_interpolation_to_compose_strings
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cotisation/components/navigation_items/welcome.dart';
@@ -47,7 +47,8 @@ Widget FetchVoyage(String collectionName) {
           itemCount: snapshot.data == null ? 0 : snapshot.data!.docs.length,
           itemBuilder: (_, index) {
             DocumentSnapshot documentSnapshot = snapshot.data!.docs[index];
-            Map<String, dynamic> data =documentSnapshot.data()! as Map<String, dynamic>;
+            Map<String, dynamic> data =
+                documentSnapshot.data()! as Map<String, dynamic>;
             return Card(
               elevation: 5,
               child: ListTile(
@@ -61,7 +62,7 @@ Widget FetchVoyage(String collectionName) {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => PartiPage(),
+                      builder: (context) => ViewPage(),
                     ),
                   );
                 },*/
@@ -98,7 +99,12 @@ Widget FetchVoyage(String collectionName) {
                             color: Colors.blue[300],
                           ),
                           onTap: () {
-                            //Your modification code here
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ModifyPage(data: data),
+                              ),
+                            );
                           },
                         ),
                       ),
@@ -112,7 +118,7 @@ Widget FetchVoyage(String collectionName) {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => PartiPage(data:data),
+                                builder: (context) => ViewPage(data: data),
                               ),
                             );
                           },
@@ -161,7 +167,7 @@ Widget FetchVoyage(String collectionName) {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => PartiPage(),
+                      builder: (context) => ViewPage(),
                     ),
                   );
                 },
@@ -175,22 +181,74 @@ Widget FetchVoyage(String collectionName) {
   );
 }*/
 
-class PartiPage extends StatefulWidget {
+class ViewPage extends StatefulWidget {
   final Map<String, dynamic> data;
-  const PartiPage({Key? key, required this.data}) : super(key: key);
-
+  const ViewPage({Key? key, required this.data}) : super(key: key);
 
   @override
-  State<PartiPage> createState() => _PartiPageState();
+  State<ViewPage> createState() => _ViewPageState();
 }
 
-class _PartiPageState extends State<PartiPage> {
+class _ViewPageState extends State<ViewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.indigo[300],
-        title: Text(widget.data['title']),
+        backgroundColor: Colors.indigo[400],
+        title: Text('Contenu du voyage ' + widget.data['title']),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'participants',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              'You are logged in',
+              style: TextStyle(
+                color: Colors.grey,
+                fontSize: 15,
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                FirebaseAuth.instance.signOut();
+              },
+              child: Text('Logout'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ModifyPage extends StatefulWidget {
+  final Map<String, dynamic> data;
+  const ModifyPage({Key? key, required this.data}) : super(key: key);
+
+  @override
+  State<ModifyPage> createState() => _ModifyPageState();
+}
+
+class _ModifyPageState extends State<ModifyPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.indigo[400],
+        title: Text('Modification du voyage ' + widget.data['title']),
       ),
       body: Center(
         child: Column(
