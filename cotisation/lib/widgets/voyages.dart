@@ -240,7 +240,9 @@ class _ModifyPageState extends State<ModifyPage> {
       Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>;
       // Set the data as the initial value of the TextEditingController
       _parti1Controller.text = data['Nom'];
-      dropdownValue1 = data['Tache'];
+      setState(() {
+        dropdownValue1 = data['Tache'];
+      });
     });
     voyageDocument
         .collection("participants")
@@ -250,7 +252,9 @@ class _ModifyPageState extends State<ModifyPage> {
       Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>;
       // Set the data as the initial value of the TextEditingController
       _parti2Controller.text = data['Nom'];
-      //dropdownValue2 = data['Tache'];
+      setState(() {
+        dropdownValue2 = data['Tache'];
+      });
     });
     voyageDocument
         .collection("participants")
@@ -260,7 +264,9 @@ class _ModifyPageState extends State<ModifyPage> {
       Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>;
       // Set the data as the initial value of the TextEditingController
       _parti3Controller.text = data['Nom'];
-      //dropdownValue3 = data['Tache'];
+      setState(() {
+        dropdownValue3 = data['Tache'];
+      });
     });
     voyageDocument
         .collection("participants")
@@ -270,7 +276,9 @@ class _ModifyPageState extends State<ModifyPage> {
       Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>;
       // Set the data as the initial value of the TextEditingController
       _parti4Controller.text = data['Nom'];
-      //dropdownValue4 = data['Tache'];
+      setState(() {
+        dropdownValue4 = data['Tache'];
+      });
     });
   }
 
@@ -287,277 +295,297 @@ class _ModifyPageState extends State<ModifyPage> {
         backgroundColor: Colors.indigo[400],
         title: Text('Modification du voyage ' + widget.data['title']),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            widget.data['title'],
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 30,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(
+              height: 35,
             ),
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: ListTile(
-                  subtitle: TextFormField(
-                    enabled: false,
-                    controller: _nameController,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(8))),
+            Text(
+              widget.data['title'],
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
+              ),
+            ),
+            SizedBox(
+              height: 35,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: ListTile(
+                    subtitle: TextFormField(
+                      enabled: false,
+                      controller: _nameController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              SizedBox(
-                width: 220,
-                child: ListTile(
-                  subtitle: TextFormField(
-                    enabled: false,
-                    controller: _descController,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                SizedBox(
+                  height: 5,
+                ),
+                SizedBox(
+                  width: 220,
+                  child: ListTile(
+                    subtitle: TextFormField(
+                      enabled: false,
+                      controller: _descController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: ListTile(
-                  subtitle: TextFormField(
-                    controller: _parti1Controller,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(8))),
+              ],
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: ListTile(
+                    subtitle: TextFormField(
+                      controller: _parti1Controller,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              SizedBox(
-                width: 220,
-                child: ListTile(
-                    subtitle: DropdownButtonFormField(
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.checklist_rounded),
-                    /*labelText: 'Tâche',
+                SizedBox(
+                  height: 15,
+                ),
+                SizedBox(
+                  width: 220,
+                  child: ListTile(
+                      subtitle: DropdownButtonFormField(
+                    decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.checklist_rounded),
+                      /*labelText: 'Tâche',
             labelStyle: TextStyle(
                   fontFamily: 'Montserrat',
                   fontWeight: FontWeight.bold,
                   color: Colors.grey),*/
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8))),
-                  ),
-                  dropdownColor: Colors.white,
-                  value: dropdownValue1,
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      dropdownValue1 = newValue!;
-                    });
-                  },
-                  items: <String>[
-                    'Tâche1',
-                    'Nourriture',
-                    'Transport',
-                    'Utilité',
-                    'Urgence',
-                    'Médicaments'
-                  ].map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: TextStyle(fontSize: 15),
-                      ),
-                    );
-                  }).toList(),
-                )),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: ListTile(
-                  subtitle: TextFormField(
-                    controller: _parti2Controller,
-                    decoration: const InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8))),
                     ),
+                    dropdownColor: Colors.white,
+                    value: dropdownValue1,
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        dropdownValue1 = newValue!;
+                      });
+                    },
+                    items: <String>[
+                      'Tâche1',
+                      'Nourriture',
+                      'Transport',
+                      'Utilité',
+                      'Urgence',
+                      'Médicaments'
+                    ].map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(
+                          value,
+                          style: TextStyle(fontSize: 15),
+                        ),
+                      );
+                    }).toList(),
+                  )),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: ListTile(
+                    subtitle: TextFormField(
+                      controller: _parti2Controller,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              SizedBox(
-                width: 220,
-                child: ListTile(
-                    subtitle: DropdownButtonFormField(
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.checklist_rounded),
-                    /*labelText: 'Tâche',
+                SizedBox(
+                  height: 15,
+                ),
+                SizedBox(
+                  width: 220,
+                  child: ListTile(
+                      subtitle: DropdownButtonFormField(
+                    decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.checklist_rounded),
+                      /*labelText: 'Tâche',
             labelStyle: TextStyle(
                   fontFamily: 'Montserrat',
                   fontWeight: FontWeight.bold,
                   color: Colors.grey),*/
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8))),
-                  ),
-                  dropdownColor: Colors.white,
-                  value: dropdownValue2,
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      dropdownValue2 = newValue!;
-                    });
-                  },
-                  items: <String>[
-                    'Tâche2',
-                    'Nourriture',
-                    'Transport',
-                    'Utilité',
-                    'Urgence',
-                    'Médicaments'
-                  ].map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: TextStyle(fontSize: 15),
-                      ),
-                    );
-                  }).toList(),
-                )),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: ListTile(
-                  subtitle: TextFormField(
-                    controller: _parti3Controller,
-                    decoration: const InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8))),
                     ),
+                    dropdownColor: Colors.white,
+                    value: dropdownValue2,
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        dropdownValue2 = newValue!;
+                      });
+                    },
+                    items: <String>[
+                      'Tâche2',
+                      'Nourriture',
+                      'Transport',
+                      'Utilité',
+                      'Urgence',
+                      'Médicaments'
+                    ].map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(
+                          value,
+                          style: TextStyle(fontSize: 15),
+                        ),
+                      );
+                    }).toList(),
+                  )),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: ListTile(
+                    subtitle: TextFormField(
+                      controller: _parti3Controller,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              SizedBox(
-                width: 220,
-                child: ListTile(
-                    subtitle: DropdownButtonFormField(
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.checklist_rounded),
-                    /*labelText: 'Tâche',
+                SizedBox(
+                  height: 15,
+                ),
+                SizedBox(
+                  width: 220,
+                  child: ListTile(
+                      subtitle: DropdownButtonFormField(
+                    decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.checklist_rounded),
+                      /*labelText: 'Tâche',
             labelStyle: TextStyle(
                   fontFamily: 'Montserrat',
                   fontWeight: FontWeight.bold,
                   color: Colors.grey),*/
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8))),
-                  ),
-                  dropdownColor: Colors.white,
-                  value: dropdownValue3,
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      dropdownValue3 = newValue!;
-                    });
-                  },
-                  items: <String>[
-                    'Tâche3',
-                    'Nourriture',
-                    'Transport',
-                    'Utilité',
-                    'Urgence',
-                    'Médicaments'
-                  ].map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: TextStyle(fontSize: 15),
-                      ),
-                    );
-                  }).toList(),
-                )),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: ListTile(
-                  subtitle: TextFormField(
-                    controller: _parti4Controller,
-                    decoration: const InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8))),
                     ),
+                    dropdownColor: Colors.white,
+                    value: dropdownValue3,
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        dropdownValue3 = newValue!;
+                      });
+                    },
+                    items: <String>[
+                      'Tâche3',
+                      'Nourriture',
+                      'Transport',
+                      'Utilité',
+                      'Urgence',
+                      'Médicaments'
+                    ].map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(
+                          value,
+                          style: TextStyle(fontSize: 15),
+                        ),
+                      );
+                    }).toList(),
+                  )),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: ListTile(
+                    subtitle: TextFormField(
+                      controller: _parti4Controller,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              SizedBox(
-                width: 220,
-                child: ListTile(
-                    subtitle: DropdownButtonFormField(
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.checklist_rounded),
-                    /*labelText: 'Tâche',
+                SizedBox(
+                  height: 15,
+                ),
+                SizedBox(
+                  width: 220,
+                  child: ListTile(
+                      subtitle: DropdownButtonFormField(
+                    decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.checklist_rounded),
+                      /*labelText: 'Tâche',
             labelStyle: TextStyle(
                   fontFamily: 'Montserrat',
                   fontWeight: FontWeight.bold,
                   color: Colors.grey),*/
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8))),
-                  ),
-                  dropdownColor: Colors.white,
-                  value: dropdownValue4,
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      dropdownValue4 = newValue!;
-                    });
-                  },
-                  items: <String>[
-                    'Tâche4',
-                    'Nourriture',
-                    'Transport',
-                    'Utilité',
-                    'Urgence',
-                    'Médicaments'
-                  ].map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: TextStyle(fontSize: 15),
-                      ),
-                    );
-                  }).toList(),
-                )),
-              ),
-            ],
-          ),
-        ],
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                    ),
+                    dropdownColor: Colors.white,
+                    value: dropdownValue4,
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        dropdownValue4 = newValue!;
+                      });
+                    },
+                    items: <String>[
+                      'Tâche4',
+                      'Nourriture',
+                      'Transport',
+                      'Utilité',
+                      'Urgence',
+                      'Médicaments'
+                    ].map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(
+                          value,
+                          style: TextStyle(fontSize: 15),
+                        ),
+                      );
+                    }).toList(),
+                  )),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
