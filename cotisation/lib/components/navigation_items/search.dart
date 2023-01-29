@@ -56,17 +56,6 @@ class _SearchState extends State<Search> {
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextFormField(
-              //controller: _nameController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8))),
-                hintText: '  Titre du voyage',
-              ),
-            ),
-          ),
           Expanded(
             child: FetchVoyage("Voyages"),
           ),
