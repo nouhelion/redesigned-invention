@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cotisation/components/navigation_items/cotisation.dart';
 import 'package:cotisation/components/navigation_items/profil.dart';
+import 'package:cotisation/model/dataset.dart';
 import 'package:cotisation/components/navigation_items/search.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -239,6 +240,13 @@ class _ParticipantPageState extends State<ParticipantPage> {
         .collection("participants")
         .doc("Participant4");
     //int coti1,coti2,coti3,coti4;
+    bool isTaskInList = false;
+    for (var task in tasks) {
+      /*if (dropdownValue1 == task.task[0]) {
+        isTaskInList = true;
+        break;
+      }*/
+    }
     await Future.wait([
       participant1
           .set({"Nom": _parti1Controller.text.trim(), "Tache": dropdownValue1}),
