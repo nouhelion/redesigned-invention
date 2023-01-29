@@ -236,7 +236,7 @@ class _ParticipantPageState extends State<ParticipantPage> {
         .doc(documentId)
         .collection("participants")
         .doc("Participant4");
-
+    int coti1,coti2,coti3,coti4;
     await Future.wait([
       participant1
           .set({"Nom": _parti1Controller.text.trim(), "Tache": dropdownValue1}),

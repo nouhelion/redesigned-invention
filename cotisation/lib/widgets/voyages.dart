@@ -319,7 +319,18 @@ class _ViewPageState extends State<ViewPage> {
                       'Transport',
                       'Utilité',
                       'Urgence',
-                      'Médicaments'
+                      'Médicaments',
+                      'Hébergement',
+                      'Loisirs',
+                      'Assurance',
+                      'Vêtements',
+                      'Autres',
+                      'Réception',
+                      'Cadeaux',
+                      'Photographie',
+                      'Musique',
+                      'Décoration',
+                      'Location',
                     ].map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
@@ -376,7 +387,18 @@ class _ViewPageState extends State<ViewPage> {
                       'Transport',
                       'Utilité',
                       'Urgence',
-                      'Médicaments'
+                      'Médicaments',
+                      'Hébergement',
+                      'Loisirs',
+                      'Assurance',
+                      'Vêtements',
+                      'Autres',
+                      'Réception',
+                      'Cadeaux',
+                      'Photographie',
+                      'Musique',
+                      'Décoration',
+                      'Location',
                     ].map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
@@ -433,7 +455,18 @@ class _ViewPageState extends State<ViewPage> {
                       'Transport',
                       'Utilité',
                       'Urgence',
-                      'Médicaments'
+                      'Médicaments',
+                      'Hébergement',
+                      'Loisirs',
+                      'Assurance',
+                      'Vêtements',
+                      'Autres',
+                      'Réception',
+                      'Cadeaux',
+                      'Photographie',
+                      'Musique',
+                      'Décoration',
+                      'Location',
                     ].map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
@@ -490,7 +523,18 @@ class _ViewPageState extends State<ViewPage> {
                       'Transport',
                       'Utilité',
                       'Urgence',
-                      'Médicaments'
+                      'Médicaments',
+                      'Hébergement',
+                      'Loisirs',
+                      'Assurance',
+                      'Vêtements',
+                      'Autres',
+                      'Réception',
+                      'Cadeaux',
+                      'Photographie',
+                      'Musique',
+                      'Décoration',
+                      'Location',
                     ].map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
@@ -747,6 +791,7 @@ class _ModifyPageState extends State<ModifyPage> {
                     subtitle: TextFormField(
                       controller: _parti1Controller,
                       decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.person),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(8))),
                       ),
@@ -783,7 +828,18 @@ class _ModifyPageState extends State<ModifyPage> {
                       'Transport',
                       'Utilité',
                       'Urgence',
-                      'Médicaments'
+                      'Médicaments',
+                      'Hébergement',
+                      'Loisirs',
+                      'Assurance',
+                      'Vêtements',
+                      'Autres',
+                      'Réception',
+                      'Cadeaux',
+                      'Photographie',
+                      'Musique',
+                      'Décoration',
+                      'Location',
                     ].map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
@@ -807,6 +863,7 @@ class _ModifyPageState extends State<ModifyPage> {
                     subtitle: TextFormField(
                       controller: _parti2Controller,
                       decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.person),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(8))),
                       ),
@@ -843,7 +900,18 @@ class _ModifyPageState extends State<ModifyPage> {
                       'Transport',
                       'Utilité',
                       'Urgence',
-                      'Médicaments'
+                      'Médicaments',
+                      'Hébergement',
+                      'Loisirs',
+                      'Assurance',
+                      'Vêtements',
+                      'Autres',
+                      'Réception',
+                      'Cadeaux',
+                      'Photographie',
+                      'Musique',
+                      'Décoration',
+                      'Location',
                     ].map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
@@ -867,6 +935,7 @@ class _ModifyPageState extends State<ModifyPage> {
                     subtitle: TextFormField(
                       controller: _parti3Controller,
                       decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.person),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(8))),
                       ),
@@ -903,7 +972,18 @@ class _ModifyPageState extends State<ModifyPage> {
                       'Transport',
                       'Utilité',
                       'Urgence',
-                      'Médicaments'
+                      'Médicaments',
+                      'Hébergement',
+                      'Loisirs',
+                      'Assurance',
+                      'Vêtements',
+                      'Autres',
+                      'Réception',
+                      'Cadeaux',
+                      'Photographie',
+                      'Musique',
+                      'Décoration',
+                      'Location',
                     ].map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
@@ -927,6 +1007,7 @@ class _ModifyPageState extends State<ModifyPage> {
                     subtitle: TextFormField(
                       controller: _parti4Controller,
                       decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.person),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(8))),
                       ),
@@ -963,7 +1044,18 @@ class _ModifyPageState extends State<ModifyPage> {
                       'Transport',
                       'Utilité',
                       'Urgence',
-                      'Médicaments'
+                      'Médicaments',
+                      'Hébergement',
+                      'Loisirs',
+                      'Assurance',
+                      'Vêtements',
+                      'Autres',
+                      'Réception',
+                      'Cadeaux',
+                      'Photographie',
+                      'Musique',
+                      'Décoration',
+                      'Location',
                     ].map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
