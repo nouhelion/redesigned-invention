@@ -21,6 +21,7 @@ class Search extends StatefulWidget {
 
 class _SearchState extends State<Search> {
   int pageIndex = 1;
+
   void _onItemTapped(int index) {
     setState(() {
       pageIndex = index;

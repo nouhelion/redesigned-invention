@@ -15,6 +15,7 @@ CollectionReference _collectionRef =
 
 //String documentId = await getDocumentId();
 
+
 Widget FetchVoyage(String collectionName) {
   return StreamBuilder(
     stream: _collectionRef.doc(uid).collection("items").snapshots(),

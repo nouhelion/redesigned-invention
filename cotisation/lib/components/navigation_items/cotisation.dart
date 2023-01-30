@@ -66,61 +66,73 @@ class _CotisationState extends State<Cotisation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: GridView.builder(
-            gridDelegate:
-                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-            itemBuilder: (context, position) {
-              return Padding(
-                  padding: const EdgeInsets.only(top: 15),
-                  child: InkWell(
-                      onTap: () {
-                        name = items[position];
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ChartPage(name: name),
-                          ),
-                        );
-                      },
-                      child: Center(
-                        child: Column(
-                          children: [
-                            Center(
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(100.0)),
-                                elevation: 5,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Icon(
-                                    Icons.time_to_leave_sharp,
-                                    size: 50,
-                                    color: Colors.indigoAccent[100],
+      body: Column(
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.only(top: 50, bottom: 5),
+            child: Text(
+              "Cotisations",
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3),
+                itemBuilder: (context, position) {
+                  return Padding(
+                      padding: const EdgeInsets.only(top: 15),
+                      child: InkWell(
+                          onTap: () {
+                            name = items[position];
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ChartPage(name: name),
+                              ),
+                            );
+                          },
+                          child: Center(
+                            child: Column(
+                              children: [
+                                Center(
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(100.0)),
+                                    elevation: 5,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(5.0),
+                                      child: Icon(
+                                        Icons.time_to_leave_sharp,
+                                        size: 50,
+                                        color: Colors.indigoAccent[100],
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
+                                Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Container(
+                                    alignment: Alignment.bottomCenter,
+                                    child: Text(
+                                      items[position],
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(),
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: Container(
-                                alignment: Alignment.bottomCenter,
-                                child: Text(
-                                  items[position],
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      )));
-            },
-            itemCount: items.length,
+                          )));
+                },
+                itemCount: items.length,
+              ),
+            ),
           ),
-        ),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
