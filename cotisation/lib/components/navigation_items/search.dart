@@ -65,6 +65,21 @@ class _SearchState extends State<Search> {
     });
   }
 
+  Future<String> getDocumentId(String voyage) async {
+    // Get a reference to the current user
+    User user = _auth.currentUser!;
+
+    // Get the user's unique identifier
+    String uid = user.uid;
+    var collectionReference = FirebaseFirestore.instance
+        .collection("Voyages")
+        .doc(uid)
+        .collection("items");
+    var query = collectionReference.where("title", isEqualTo: voyage);
+    var querySnapshot = await query.get();
+    return querySnapshot.docs.first.id;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,48 +102,92 @@ class _SearchState extends State<Search> {
                   return Padding(
                       padding: const EdgeInsets.only(top: 15),
                       child: InkWell(
-                          onTap: () {
-                            name = items[position];
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ChartPage(name: name),
-                              ),
-                            );
-                          },
                           child: Center(
-                            child: Column(
-                              children: [
-                                Center(
-                                  child: Card(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(100.0)),
-                                    elevation: 5,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(5.0),
-                                      child: Icon(
-                                        Icons.time_to_leave_sharp,
-                                        size: 50,
-                                        color: Colors.indigoAccent[100],
-                                      ),
-                                    ),
+                        child: Column(
+                          children: [
+                            Center(
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(100.0)),
+                                elevation: 5,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Icon(
+                                    Icons.time_to_leave_sharp,
+                                    size: 50,
+                                    color: Colors.indigoAccent[100],
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Container(
-                                    alignment: Alignment.bottomCenter,
-                                    child: Text(
-                                      items[position],
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(),
-                                    ),
-                                  ),
-                                )
-                              ],
+                              ),
                             ),
-                          )));
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Container(
+                                alignment: Alignment.bottomCenter,
+                                child: Text(
+                                  items[position],
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(),
+                                ),
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                GestureDetector(
+                                  child: Icon(
+                                    Icons.visibility,
+                                    color: Colors.green[300],
+                                  ),
+                                  onTap: () {
+                                    name = items[position];
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            ViewPage(name: name),
+                                      ),
+                                    );
+                                  },
+                                ),
+                                GestureDetector(
+                                  child: Icon(
+                                    Icons.edit,
+                                    color: Colors.blue[300],
+                                  ),
+                                  onTap: () {
+                                    name = items[position];
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            ModifyPage(name: name),
+                                      ),
+                                    );
+                                  },
+                                ),
+                                GestureDetector(
+                                  child: Icon(
+                                    Icons.delete,
+                                    color: Colors.red[300],
+                                  ),
+                                  onTap: () async {
+                                    String documentId =
+                                        await getDocumentId(items[position]);
+                                    FirebaseFirestore.instance
+                                        .collection("Voyages")
+                                        .doc(FirebaseAuth
+                                            .instance.currentUser!.uid)
+                                        .collection("items")
+                                        .doc(documentId)
+                                        .delete();
+                                  },
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      )));
                 },
                 itemCount: items.length,
               ),
@@ -162,8 +221,8 @@ class _SearchState extends State<Search> {
 }
 
 class ViewPage extends StatefulWidget {
-  final Map<String, dynamic> data;
-  const ViewPage({Key? key, required this.data}) : super(key: key);
+  final String name;
+  const ViewPage({Key? key, required this.name}) : super(key: key);
 
   @override
   State<ViewPage> createState() => _ViewPageState();
@@ -180,8 +239,7 @@ class _ViewPageState extends State<ViewPage> {
         .collection("Voyages")
         .doc(uid)
         .collection("items");
-    var query =
-        collectionReference.where("title", isEqualTo: widget.data['title']);
+    var query = collectionReference.where("title", isEqualTo: name);
     var querySnapshot = await query.get();
     return querySnapshot.docs.first.id;
   }
@@ -270,7 +328,7 @@ class _ViewPageState extends State<ViewPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.indigo[400],
-        title: Text('Contenu du voyage ' + widget.data['title']),
+        title: Text('Contenu du voyage ' + name),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -280,7 +338,7 @@ class _ViewPageState extends State<ViewPage> {
               height: 20,
             ),
             Text(
-              widget.data['title'],
+              name,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 30,
@@ -623,9 +681,8 @@ String dropdownValue3 = 'Tâche3';
 String dropdownValue4 = 'Tâche4';
 
 class ModifyPage extends StatefulWidget {
-  final Map<String, dynamic> data;
-  const ModifyPage({Key? key, required this.data}) : super(key: key);
-
+  final String name;
+  const ModifyPage({Key? key, required this.name}) : super(key: key);
   @override
   State<ModifyPage> createState() => _ModifyPageState();
 }
@@ -641,8 +698,7 @@ class _ModifyPageState extends State<ModifyPage> {
         .collection("Voyages")
         .doc(uid)
         .collection("items");
-    var query =
-        collectionReference.where("title", isEqualTo: widget.data['title']);
+    var query = collectionReference.where("title", isEqualTo: name);
     var querySnapshot = await query.get();
     return querySnapshot.docs.first.id;
   }
@@ -779,7 +835,7 @@ class _ModifyPageState extends State<ModifyPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.indigo[400],
-        title: Text('Modification du voyage ' + widget.data['title']),
+        title: Text('Modification du voyage ' + name),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -789,7 +845,7 @@ class _ModifyPageState extends State<ModifyPage> {
               height: 20,
             ),
             Text(
-              widget.data['title'],
+              name,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 30,
