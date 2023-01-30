@@ -150,6 +150,9 @@ class _SearchState extends State<Search> {
                                     );
                                   },
                                 ),
+                                SizedBox(
+                                  width: 10,
+                                ),
                                 GestureDetector(
                                   child: Icon(
                                     Icons.edit,
@@ -165,6 +168,9 @@ class _SearchState extends State<Search> {
                                       ),
                                     );
                                   },
+                                ),
+                                SizedBox(
+                                  width: 10,
                                 ),
                                 GestureDetector(
                                   child: Icon(
