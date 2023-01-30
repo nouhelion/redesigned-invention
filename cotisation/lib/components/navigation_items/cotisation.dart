@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unused_element, non_constant_identifier_names, sort_child_properties_last
+// ignore_for_file: prefer_const_constructors, unused_element, non_constant_identifier_names, sort_child_properties_last, prefer_interpolation_to_compose_strings
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cotisation/components/navigation_items/profil.dart';
@@ -21,6 +21,8 @@ class Cotisation extends StatefulWidget {
   @override
   State<Cotisation> createState() => _CotisationState();
 }
+
+String name = '';
 
 class _CotisationState extends State<Cotisation> {
   int pageIndex = 2;
@@ -64,57 +66,60 @@ class _CotisationState extends State<Cotisation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(5.0),
-        child: GridView.builder(
-          gridDelegate:
-              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-          itemBuilder: (context, position) {
-            return Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: InkWell(
-                    onTap: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Profile(),
-                        ),
-                      );
-                    },
-                    child: Center(
-                      child: Column(
-                        children: [
-                          Center(
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(100.0)),
-                              elevation: 5,
-                              child: Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Icon(
-                                  Icons.time_to_leave_sharp,
-                                  size: 50,
-                                  color: Colors.indigoAccent[100],
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: GridView.builder(
+            gridDelegate:
+                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+            itemBuilder: (context, position) {
+              return Padding(
+                  padding: const EdgeInsets.only(top: 15),
+                  child: InkWell(
+                      onTap: () {
+                        name = items[position];
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ChartPage(name: name),
+                          ),
+                        );
+                      },
+                      child: Center(
+                        child: Column(
+                          children: [
+                            Center(
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(100.0)),
+                                elevation: 5,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Icon(
+                                    Icons.time_to_leave_sharp,
+                                    size: 50,
+                                    color: Colors.indigoAccent[100],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: Container(
-                              alignment: Alignment.bottomCenter,
-                              child: Text(
-                                items[position],
-                                textAlign: TextAlign.center,
-                                style: TextStyle(),
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Container(
+                                alignment: Alignment.bottomCenter,
+                                child: Text(
+                                  items[position],
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(),
+                                ),
                               ),
-                            ),
-                          )
-                        ],
-                      ),
-                    )));
-          },
-          itemCount: items.length,
+                            )
+                          ],
+                        ),
+                      )));
+            },
+            itemCount: items.length,
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -137,6 +142,24 @@ class _CotisationState extends State<Cotisation> {
         unselectedItemColor: Colors.grey,
         selectedItemColor: Colors.indigo,
         onTap: _onItemTapped,
+      ),
+    );
+  }
+}
+
+class ChartPage extends StatefulWidget {
+  final String name;
+  const ChartPage({Key? key, required this.name}) : super(key: key);
+  @override
+  State<ChartPage> createState() => _ChartPageState();
+}
+
+class _ChartPageState extends State<ChartPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Cotisations du Voyage " + name),
       ),
     );
   }
