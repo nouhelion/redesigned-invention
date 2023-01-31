@@ -106,9 +106,9 @@ class _CotisationState extends State<Cotisation> {
                                     child: Padding(
                                       padding: const EdgeInsets.all(5.0),
                                       child: Icon(
-                                        Icons.time_to_leave_sharp,
+                                        Icons.show_chart,
                                         size: 50,
-                                        color: Colors.indigoAccent[100],
+                                        color: Colors.green,
                                       ),
                                     ),
                                   ),
