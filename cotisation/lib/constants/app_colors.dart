@@ -14,11 +14,13 @@ class AppColors {
 
   static const Color contentColorBlack = Colors.black;
   static const Color contentColorWhite = Colors.white;
-  static const Color contentColorBlue = Color.fromARGB(255, 142, 199, 246);
-  static const Color contentColorYellow = Color.fromARGB(255, 208, 179, 84);
+
+  static const Color contentColorBlue = Color(0Xff18363e);
+  static const Color contentColorYellow = Color(0Xff93c4d1);
+  static const Color contentColorGreen = Color(0Xff2d5f6e);
+  static const Color contentColorPurple = Color(0Xff3e88a5);
+
   static const Color contentColorOrange = Color.fromARGB(255, 233, 136, 107);
-  static const Color contentColorGreen = Color.fromARGB(255, 121, 209, 127);
-  static const Color contentColorPurple = Color.fromARGB(255, 186, 150, 250);
   static const Color contentColorPink = Color.fromARGB(255, 200, 128, 195);
   static const Color contentColorRed = Color.fromARGB(255, 213, 101, 142);
   static const Color contentColorCyan = Color.fromARGB(255, 135, 195, 205);
