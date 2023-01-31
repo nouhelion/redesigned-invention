@@ -6,8 +6,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cotisation/components/navigation_items/profil.dart';
 import 'package:cotisation/components/navigation_items/search.dart';
 import 'package:cotisation/components/navigation_items/welcome.dart';
+import 'package:cotisation/constants/app_ressources.dart';
+import 'package:cotisation/widgets/indicator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
+
 import 'package:flutter/material.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -170,7 +173,7 @@ class ChartPage extends StatefulWidget {
 }
 
 class _ChartPageState extends State<ChartPage> {
-  late List<List<PieChartSectionData>> _dataList;
+  late List<PieChartSectionData> _dataList;
   Random random = new Random();
   Future<String> getDocumentId(String voyage) async {
     // Get a reference to the current user
@@ -191,47 +194,187 @@ class _ChartPageState extends State<ChartPage> {
   void initState() {
     super.initState();
     _dataList = [];
-    _getData();
+    //_getData();
   }
 
-  Future<void> _getData() async {
+  /*Future<void> _getData() async {
     String documentId = await getDocumentId(name);
     FirebaseFirestore.instance
         .collection("Voyages")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .collection("items")
         .doc(documentId)
+        .collection("participants")
         .get()
-        .then((DocumentSnapshot snapshot) {
-      var values = snapshot.data() as Map;
-      values.forEach((key, value) {
-        var data = <PieChartSectionData>[];
-        var document = value as Map;
-        document.forEach((key, value) {
-          var label = key;
-          var number = value;
-          data.add(
-            PieChartSectionData(
-              value: number,
-              color: Color.fromARGB(255, random.nextInt(255),
-                  random.nextInt(255), random.nextInt(255)),
-              title: label,
-            ),
-          );
-        });
-        setState(() {
-          _dataList.add(data);
-        });
+        .then((QuerySnapshot snapshot) {
+      List<PieChartSectionData> dataList = [];
+      for (var document in snapshot.docs) {
+        var task = document.data()["task"];
+        var amount = document.data()["amount"];
+        var data = PieChartSectionData(
+          value: amount,
+          color: Color.fromARGB(255, random.nextInt(255), random.nextInt(255),
+              random.nextInt(255)),
+          title: task,
+        );
+        dataList.add(data);
+      }
+      setState(() {
+        _dataList = dataList;
       });
     });
-  }
-
+  }*/
+  int touchedIndex = -1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Cotisations du Voyage " + name),
-      ),
-    );
+        appBar: AppBar(
+          title: Text("Cotisations du Voyage " + name),
+        ),
+        body: AspectRatio(
+          aspectRatio: 1.3,
+          child: Row(
+            children: <Widget>[
+              const SizedBox(
+                height: 18,
+              ),
+              Expanded(
+                child: AspectRatio(
+                  aspectRatio: 1,
+                  child: PieChart(
+                    PieChartData(
+                      pieTouchData: PieTouchData(
+                        touchCallback: (FlTouchEvent event, pieTouchResponse) {
+                          setState(() {
+                            if (!event.isInterestedForInteractions ||
+                                pieTouchResponse == null ||
+                                pieTouchResponse.touchedSection == null) {
+                              touchedIndex = -1;
+                              return;
+                            }
+                            touchedIndex = pieTouchResponse
+                                .touchedSection!.touchedSectionIndex;
+                          });
+                        },
+                      ),
+                      borderData: FlBorderData(
+                        show: false,
+                      ),
+                      sectionsSpace: 0,
+                      centerSpaceRadius: 40,
+                      sections: showingSections(),
+                    ),
+                  ),
+                ),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const <Widget>[
+                  Indicator(
+                    color: AppColors.contentColorBlue,
+                    text: 'First',
+                    isSquare: true,
+                  ),
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Indicator(
+                    color: AppColors.contentColorYellow,
+                    text: 'Second',
+                    isSquare: true,
+                  ),
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Indicator(
+                    color: AppColors.contentColorPurple,
+                    text: 'Third',
+                    isSquare: true,
+                  ),
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Indicator(
+                    color: AppColors.contentColorGreen,
+                    text: 'Fourth',
+                    isSquare: true,
+                  ),
+                  SizedBox(
+                    height: 18,
+                  ),
+                ],
+              ),
+              const SizedBox(
+                width: 28,
+              ),
+            ],
+          ),
+        ));
+  }
+
+  List<PieChartSectionData> showingSections() {
+    return List.generate(4, (i) {
+      final isTouched = i == touchedIndex;
+      final fontSize = isTouched ? 25.0 : 16.0;
+      final radius = isTouched ? 60.0 : 50.0;
+      const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
+      switch (i) {
+        case 0:
+          return PieChartSectionData(
+            color: AppColors.contentColorBlue,
+            value: 40,
+            title: '40%',
+            radius: radius,
+            titleStyle: TextStyle(
+              fontSize: fontSize,
+              fontWeight: FontWeight.bold,
+              color: AppColors.mainTextColor1,
+              shadows: shadows,
+            ),
+          );
+        case 1:
+          return PieChartSectionData(
+            color: AppColors.contentColorYellow,
+            value: 30,
+            title: '30%',
+            radius: radius,
+            titleStyle: TextStyle(
+              fontSize: fontSize,
+              fontWeight: FontWeight.bold,
+              color: AppColors.mainTextColor1,
+              shadows: shadows,
+            ),
+          );
+        case 2:
+          return PieChartSectionData(
+            color: AppColors.contentColorPurple,
+            value: 15,
+            title: '15%',
+            radius: radius,
+            titleStyle: TextStyle(
+              fontSize: fontSize,
+              fontWeight: FontWeight.bold,
+              color: AppColors.mainTextColor1,
+              shadows: shadows,
+            ),
+          );
+        case 3:
+          return PieChartSectionData(
+            color: AppColors.contentColorGreen,
+            value: 15,
+            title: '15%',
+            radius: radius,
+            titleStyle: TextStyle(
+              fontSize: fontSize,
+              fontWeight: FontWeight.bold,
+              color: AppColors.mainTextColor1,
+              shadows: shadows,
+            ),
+          );
+        default:
+          throw Error();
+      }
+    });
   }
 }
