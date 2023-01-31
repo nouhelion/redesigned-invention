@@ -7,6 +7,7 @@ import 'package:cotisation/components/navigation_items/profil.dart';
 import 'package:cotisation/components/navigation_items/search.dart';
 import 'package:cotisation/components/navigation_items/welcome.dart';
 import 'package:cotisation/constants/app_ressources.dart';
+import 'package:cotisation/model/dataset.dart';
 import 'package:cotisation/widgets/indicator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -194,36 +195,45 @@ class _ChartPageState extends State<ChartPage> {
   void initState() {
     super.initState();
     _dataList = [];
-    //_getData();
+    _getData();
   }
 
-  /*Future<void> _getData() async {
+  late Task task1, task2, task3, task4;
+  Future<void> _getData() async {
     String documentId = await getDocumentId(name);
-    FirebaseFirestore.instance
-        .collection("Voyages")
-        .doc(FirebaseAuth.instance.currentUser!.uid)
+
+    DocumentReference participant1 = _collectionRef
+        .doc(uid)
         .collection("items")
         .doc(documentId)
         .collection("participants")
-        .get()
-        .then((QuerySnapshot snapshot) {
-      List<PieChartSectionData> dataList = [];
-      for (var document in snapshot.docs) {
-        var task = document.data()["task"];
-        var amount = document.data()["amount"];
-        var data = PieChartSectionData(
-          value: amount,
-          color: Color.fromARGB(255, random.nextInt(255), random.nextInt(255),
-              random.nextInt(255)),
-          title: task,
-        );
-        dataList.add(data);
-      }
-      setState(() {
-        _dataList = dataList;
-      });
-    });
-  }*/
+        .doc("Participant1");
+    DocumentReference participant2 = _collectionRef
+        .doc(uid)
+        .collection("items")
+        .doc(documentId)
+        .collection("participants")
+        .doc("Participant2");
+    DocumentReference participant3 = _collectionRef
+        .doc(uid)
+        .collection("items")
+        .doc(documentId)
+        .collection("participants")
+        .doc("Participant3");
+    DocumentReference participant4 = _collectionRef
+        .doc(uid)
+        .collection("items")
+        .doc(documentId)
+        .collection("participants")
+        .doc("Participant4");
+
+    DocumentSnapshot participant1Snapshot = await participant1.get();
+    //task1.add(participant1Snapshot.data()!["title"]);
+    DocumentSnapshot participant2Snapshot = await participant2.get();
+    DocumentSnapshot participant3Snapshot = await participant3.get();
+    DocumentSnapshot participant4Snapshot = await participant4.get();
+  }
+
   int touchedIndex = -1;
   @override
   Widget build(BuildContext context) {
