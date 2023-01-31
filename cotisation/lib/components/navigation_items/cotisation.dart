@@ -7,7 +7,7 @@ import 'package:cotisation/components/navigation_items/profil.dart';
 import 'package:cotisation/components/navigation_items/search.dart';
 import 'package:cotisation/components/navigation_items/welcome.dart';
 import 'package:cotisation/constants/app_ressources.dart';
-import 'package:cotisation/model/dataset.dart';
+//import 'package:cotisation/model/dataset.dart';
 import 'package:cotisation/widgets/indicator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -173,6 +173,9 @@ class ChartPage extends StatefulWidget {
   State<ChartPage> createState() => _ChartPageState();
 }
 
+String tache1 = '', tache2 = '', tache3 = '', tache4 = '';
+double montant1 = 0, montant2 = 0, montant3 = 0, montant4 = 0;
+
 class _ChartPageState extends State<ChartPage> {
   late List<PieChartSectionData> _dataList;
   Random random = new Random();
@@ -198,40 +201,92 @@ class _ChartPageState extends State<ChartPage> {
     _getData();
   }
 
-  late Task task1, task2, task3, task4;
   Future<void> _getData() async {
     String documentId = await getDocumentId(name);
 
-    DocumentReference participant1 = _collectionRef
-        .doc(uid)
-        .collection("items")
-        .doc(documentId)
-        .collection("participants")
-        .doc("Participant1");
-    DocumentReference participant2 = _collectionRef
-        .doc(uid)
-        .collection("items")
-        .doc(documentId)
-        .collection("participants")
-        .doc("Participant2");
-    DocumentReference participant3 = _collectionRef
-        .doc(uid)
-        .collection("items")
-        .doc(documentId)
-        .collection("participants")
-        .doc("Participant3");
-    DocumentReference participant4 = _collectionRef
-        .doc(uid)
-        .collection("items")
-        .doc(documentId)
-        .collection("participants")
-        .doc("Participant4");
+    // Get a reference to the current user
+    User user = _auth.currentUser!;
 
-    DocumentSnapshot participant1Snapshot = await participant1.get();
-    //task1.add(participant1Snapshot.data()!["title"]);
-    DocumentSnapshot participant2Snapshot = await participant2.get();
-    DocumentSnapshot participant3Snapshot = await participant3.get();
-    DocumentSnapshot participant4Snapshot = await participant4.get();
+    // Get the user's unique identifier
+    String uid = user.uid;
+
+    // Get a reference to the 'users' collection
+    CollectionReference usersCollection =
+        _firestore.collection('Voyages').doc(uid).collection("items");
+
+    // Get a reference to the document with the user's data
+    DocumentReference voyageDocument = usersCollection.doc(documentId);
+
+    // Get the participants from the document
+    voyageDocument
+        .collection("participants")
+        .doc("Participant1")
+        .get()
+        .then((snapshot) async {
+      Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>;
+      // Set the data as the initial value of the TextEditingController
+      //_parti1Controller.text = data['Nom'];
+      setState(() {
+        tache1 = data['Tache'];
+        montant1 = data['Cotisation'];
+      });
+    });
+    // Get the participants from the document
+    voyageDocument
+        .collection("participants")
+        .doc("Participant1")
+        .get()
+        .then((snapshot) async {
+      Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>;
+      // Set the data as the initial value of the TextEditingController
+      //_parti1Controller.text = data['Nom'];
+      setState(() {
+        tache1 = data['Tache'];
+        montant1 = data['Cotisation'];
+      });
+    });
+    // Get the participants from the document
+    voyageDocument
+        .collection("participants")
+        .doc("Participant2")
+        .get()
+        .then((snapshot) async {
+      Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>;
+      // Set the data as the initial value of the TextEditingController
+      //_parti1Controller.text = data['Nom'];
+      setState(() {
+        tache2 = data['Tache'];
+        montant2 = data['Cotisation'];
+      });
+    });
+    // Get the participants from the document
+    voyageDocument
+        .collection("participants")
+        .doc("Participant3")
+        .get()
+        .then((snapshot) async {
+      Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>;
+      // Set the data as the initial value of the TextEditingController
+      //_parti1Controller.text = data['Nom'];
+      setState(() {
+        tache3 = data['Tache'];
+        montant3 = data['Cotisation'];
+      });
+    });
+    // Get the participants from the document
+    voyageDocument
+        .collection("participants")
+        .doc("Participant4")
+        .get()
+        .then((snapshot) async {
+      Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>;
+      // Set the data as the initial value of the TextEditingController
+      //_parti1Controller.text = data['Nom'];
+      setState(() {
+        tache4 = data['Tache'];
+        montant4 = data['Cotisation'];
+      });
+    });
   }
 
   int touchedIndex = -1;
@@ -239,7 +294,7 @@ class _ChartPageState extends State<ChartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Cotisations du Voyage " + name),
+          title: Text("Cotisations du Voyage " + tache1),
         ),
         body: AspectRatio(
           aspectRatio: 1.3,
