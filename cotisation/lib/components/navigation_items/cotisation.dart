@@ -173,7 +173,10 @@ class ChartPage extends StatefulWidget {
   State<ChartPage> createState() => _ChartPageState();
 }
 
-String tache1 = '', tache2 = '', tache3 = '', tache4 = '';
+String tache1 = 'tache1',
+    tache2 = 'tache2',
+    tache3 = 'tache3',
+    tache4 = 'tache4';
 double montant1 = 0, montant2 = 0, montant3 = 0, montant4 = 0;
 
 class _ChartPageState extends State<ChartPage> {
@@ -223,7 +226,7 @@ class _ChartPageState extends State<ChartPage> {
         .doc("Participant1")
         .get()
         .then((snapshot) async {
-      Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>;
+      Map<String, dynamic>? data = snapshot.data() as Map<String, double>;
       // Set the data as the initial value of the TextEditingController
       //_parti1Controller.text = data['Nom'];
       setState(() {
@@ -237,11 +240,11 @@ class _ChartPageState extends State<ChartPage> {
         .doc("Participant1")
         .get()
         .then((snapshot) async {
-      Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>;
+      Map<String, dynamic>? data = snapshot.data() as Map<String, double>;
       // Set the data as the initial value of the TextEditingController
       //_parti1Controller.text = data['Nom'];
       setState(() {
-        tache1 = data['Tache'];
+        tache1 = data['Tache'].toString();
         montant1 = data['Cotisation'];
       });
     });
@@ -251,11 +254,11 @@ class _ChartPageState extends State<ChartPage> {
         .doc("Participant2")
         .get()
         .then((snapshot) async {
-      Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>;
+      Map<String, dynamic>? data = snapshot.data() as Map<String, double>;
       // Set the data as the initial value of the TextEditingController
       //_parti1Controller.text = data['Nom'];
       setState(() {
-        tache2 = data['Tache'];
+        tache2 = data['Tache'].toString();
         montant2 = data['Cotisation'];
       });
     });
@@ -265,11 +268,11 @@ class _ChartPageState extends State<ChartPage> {
         .doc("Participant3")
         .get()
         .then((snapshot) async {
-      Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>;
+      Map<String, dynamic>? data = snapshot.data() as Map<String, double>;
       // Set the data as the initial value of the TextEditingController
       //_parti1Controller.text = data['Nom'];
       setState(() {
-        tache3 = data['Tache'];
+        tache3 = data['Tache'].toString();
         montant3 = data['Cotisation'];
       });
     });
@@ -279,11 +282,11 @@ class _ChartPageState extends State<ChartPage> {
         .doc("Participant4")
         .get()
         .then((snapshot) async {
-      Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>;
+      Map<String, dynamic>? data = snapshot.data() as Map<String, double>;
       // Set the data as the initial value of the TextEditingController
       //_parti1Controller.text = data['Nom'];
       setState(() {
-        tache4 = data['Tache'];
+        tache4 = data['Tache'].toString();
         montant4 = data['Cotisation'];
       });
     });
@@ -294,7 +297,7 @@ class _ChartPageState extends State<ChartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Cotisations du Voyage " + tache1),
+          title: Text("Cotisations du Voyage " + name),
         ),
         body: AspectRatio(
           aspectRatio: 1.3,
@@ -338,7 +341,7 @@ class _ChartPageState extends State<ChartPage> {
                 children: const <Widget>[
                   Indicator(
                     color: AppColors.contentColorBlue,
-                    text: 'First',
+                    text: "tache1",
                     isSquare: true,
                   ),
                   SizedBox(
