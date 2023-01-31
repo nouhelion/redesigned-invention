@@ -95,7 +95,7 @@ class _ProfileState extends State<Profile> {
     await user.updatePassword(_passwordController.text);
     await user.updateEmail(_emailController.text);
     // Modify the data in the document
-    await userDocument.set({
+    await userDocument.update({
       'name': _nameController.text.trim(),
       'email': _emailController.text.trim(),
       'phone': _phoneController.text.trim(),

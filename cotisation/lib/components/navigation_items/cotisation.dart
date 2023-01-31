@@ -1,10 +1,13 @@
-// ignore_for_file: prefer_const_constructors, unused_element, non_constant_identifier_names, sort_child_properties_last, prefer_interpolation_to_compose_strings
+// ignore_for_file: prefer_const_constructors, unused_element, non_constant_identifier_names, sort_child_properties_last, prefer_interpolation_to_compose_strings, unnecessary_new, unused_local_variable, unused_field
+
+import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cotisation/components/navigation_items/profil.dart';
 import 'package:cotisation/components/navigation_items/search.dart';
 import 'package:cotisation/components/navigation_items/welcome.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -167,6 +170,62 @@ class ChartPage extends StatefulWidget {
 }
 
 class _ChartPageState extends State<ChartPage> {
+  late List<List<PieChartSectionData>> _dataList;
+  Random random = new Random();
+  Future<String> getDocumentId(String voyage) async {
+    // Get a reference to the current user
+    User user = _auth.currentUser!;
+
+    // Get the user's unique identifier
+    String uid = user.uid;
+    var collectionReference = FirebaseFirestore.instance
+        .collection("Voyages")
+        .doc(uid)
+        .collection("items");
+    var query = collectionReference.where("title", isEqualTo: voyage);
+    var querySnapshot = await query.get();
+    return querySnapshot.docs.first.id;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _dataList = [];
+    _getData();
+  }
+
+  Future<void> _getData() async {
+    String documentId = await getDocumentId(name);
+    FirebaseFirestore.instance
+        .collection("Voyages")
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection("items")
+        .doc(documentId)
+        .get()
+        .then((DocumentSnapshot snapshot) {
+      var values = snapshot.data() as Map;
+      values.forEach((key, value) {
+        var data = <PieChartSectionData>[];
+        var document = value as Map;
+        document.forEach((key, value) {
+          var label = key;
+          var number = value;
+          data.add(
+            PieChartSectionData(
+              value: number,
+              color: Color.fromARGB(255, random.nextInt(255),
+                  random.nextInt(255), random.nextInt(255)),
+              title: label,
+            ),
+          );
+        });
+        setState(() {
+          _dataList.add(data);
+        });
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

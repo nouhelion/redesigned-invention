@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cotisation/components/navigation_items/cotisation.dart';
 import 'package:cotisation/components/navigation_items/profil.dart';
 import 'package:cotisation/components/navigation_items/welcome.dart';
+import 'package:cotisation/model/dataset.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -817,16 +818,43 @@ class _ModifyPageState extends State<ModifyPage> {
         .doc(documentId)
         .collection("participants")
         .doc("Participant4");
+    int coti1 = 20, coti2 = 20, coti3 = 20, coti4 = 20;
+    Task task1 = tasks.firstWhere((task) => task.task == dropdownValue1);
 
+    coti1 = task1.amount!;
+
+    Task task2 = tasks.firstWhere((task) => task.task == dropdownValue2);
+
+    coti2 = task2.amount!;
+
+    Task task3 = tasks.firstWhere((task) => task.task == dropdownValue3);
+
+    coti3 = task3.amount!;
+
+    Task task4 = tasks.firstWhere((task) => task.task == dropdownValue4);
+
+    coti4 = task4.amount!;
     await Future.wait([
-      participant1
-          .set({"Nom": _parti1Controller.text.trim(), "Tache": dropdownValue1}),
-      participant2
-          .set({"Nom": _parti2Controller.text.trim(), "Tache": dropdownValue2}),
-      participant3
-          .set({"Nom": _parti3Controller.text.trim(), "Tache": dropdownValue3}),
-      participant4
-          .set({"Nom": _parti4Controller.text.trim(), "Tache": dropdownValue4}),
+      participant1.set({
+        "Nom": _parti1Controller.text.trim(),
+        "Tache": dropdownValue1,
+        "Cotisation": coti1
+      }),
+      participant2.update({
+        "Nom": _parti2Controller.text.trim(),
+        "Tache": dropdownValue2,
+        "Cotisation": coti2
+      }),
+      participant3.update({
+        "Nom": _parti3Controller.text.trim(),
+        "Tache": dropdownValue3,
+        "Cotisation": coti3
+      }),
+      participant4.update({
+        "Nom": _parti4Controller.text.trim(),
+        "Tache": dropdownValue4,
+        "Cotisation": coti4
+      }),
     ]);
   }
 
