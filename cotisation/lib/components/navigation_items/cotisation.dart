@@ -241,7 +241,7 @@ class _ChartPageState extends State<ChartPage> {
       // Set the data as the initial value of the TextEditingController
       //_parti1Controller.text = data['Nom'];
       setState(() {
-        tache1 = data['Tache'].toString();
+        tache1 = data['Tache'];
         montant1 = data['Cotisation'];
       });
     });
@@ -269,7 +269,7 @@ class _ChartPageState extends State<ChartPage> {
       // Set the data as the initial value of the TextEditingController
       //_parti1Controller.text = data['Nom'];
       setState(() {
-        tache3 = data['Tache'] as String;
+        tache3 = data['Tache'].toString();
         montant3 = data['Cotisation'];
       });
     });
