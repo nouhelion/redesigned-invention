@@ -19,7 +19,7 @@ List<Task> tasks = [
   Task(task: 'Hébergement', amount: 1000),
   Task(task: 'Loisirs', amount: 400),
   Task(task: 'Assurance', amount: 2000),
-  Task(task: 'Vêtements', amount: 6000),
+  Task(task: 'Vêtements', amount: 2000),
   Task(task: 'Autres', amount: 1000),
   Task(task: 'Réception', amount: 1500),
   Task(task: 'Cadeaux', amount: 7000),

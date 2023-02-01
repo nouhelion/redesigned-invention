@@ -173,10 +173,7 @@ class ChartPage extends StatefulWidget {
   State<ChartPage> createState() => _ChartPageState();
 }
 
-String tache1 = 'tache1',
-    tache2 = 'tache2',
-    tache3 = 'tache3',
-    tache4 = 'tache4';
+String tache1 = ' ', tache2 = ' ', tache3 = ' ', tache4 = ' ';
 double montant1 = 0, montant2 = 0, montant3 = 0, montant4 = 0;
 
 class _ChartPageState extends State<ChartPage> {
@@ -272,7 +269,7 @@ class _ChartPageState extends State<ChartPage> {
       // Set the data as the initial value of the TextEditingController
       //_parti1Controller.text = data['Nom'];
       setState(() {
-        tache3 = data['Tache'].toString();
+        tache3 = data['Tache'] as String;
         montant3 = data['Cotisation'];
       });
     });
@@ -297,7 +294,7 @@ class _ChartPageState extends State<ChartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Cotisations du Voyage " + name),
+          title: Text("Cotisations du Voyage " + tache1),
         ),
         body: AspectRatio(
           aspectRatio: 1.3,
