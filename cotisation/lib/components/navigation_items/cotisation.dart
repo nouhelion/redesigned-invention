@@ -1,6 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unused_element, non_constant_identifier_names, sort_child_properties_last, prefer_interpolation_to_compose_strings, unnecessary_new, unused_local_variable, unused_field, avoid_unnecessary_containers, prefer_final_fields
-
-import 'dart:math';
+// ignore_for_file: prefer_const_constructors, unused_element, non_constant_identifier_names, sort_child_properties_last, prefer_interpolation_to_compose_strings, unnecessary_new, unused_local_variable, unused_field, avoid_unnecessary_containers, prefer_final_fields, avoid_print
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cotisation/components/navigation_items/profil.dart';
@@ -171,11 +169,9 @@ class ChartPage extends StatefulWidget {
 }
 
 String tache1 = ' ', tache2 = ' ', tache3 = ' ', tache4 = ' ';
-double montant1 = 0, montant2 = 0, montant3 = 0, montant4 = 0;
+double montant1 = 0.0, montant2 = 0.0, montant3 = 0.0, montant4 = 0.0;
 
 class _ChartPageState extends State<ChartPage> {
-  Random random = new Random();
-
   Future<String> getDocumentId(String voyage) async {
     User user = _auth.currentUser!;
     String uid = user.uid;
@@ -191,8 +187,9 @@ class _ChartPageState extends State<ChartPage> {
   @override
   void initState() {
     super.initState();
-    //_dataList = [];
+
     _getData();
+    print(tache1);
   }
 
   Future<void> _getData() async {
@@ -208,10 +205,10 @@ class _ChartPageState extends State<ChartPage> {
         .doc("Participant1")
         .get()
         .then((snapshot) async {
-      Map<String, dynamic>? data = snapshot.data() as Map<String, double>;
+      Map<String, double> data = snapshot.data() as Map<String, double>;
       setState(() {
-        tache1 = data['Tache'];
-        montant1 = data['Cotisation'];
+        tache1 = data['Tache'].toString();
+        montant1 = data['Cotisation']!;
       });
     });
     voyageDocument
@@ -219,10 +216,10 @@ class _ChartPageState extends State<ChartPage> {
         .doc("Participant2")
         .get()
         .then((snapshot) async {
-      Map<String, dynamic>? data = snapshot.data() as Map<String, double>;
+      Map<String, double> data = snapshot.data() as Map<String, double>;
       setState(() {
         tache2 = data['Tache'].toString();
-        montant2 = data['Cotisation'];
+        montant2 = data['Cotisation']!;
       });
     });
     voyageDocument
@@ -230,10 +227,10 @@ class _ChartPageState extends State<ChartPage> {
         .doc("Participant3")
         .get()
         .then((snapshot) async {
-      Map<String, dynamic>? data = snapshot.data() as Map<String, double>;
+      Map<String, double> data = snapshot.data() as Map<String, double>;
       setState(() {
         tache3 = data['Tache'].toString();
-        montant3 = data['Cotisation'];
+        montant3 = data['Cotisation']!;
       });
     });
     voyageDocument
@@ -241,23 +238,24 @@ class _ChartPageState extends State<ChartPage> {
         .doc("Participant4")
         .get()
         .then((snapshot) async {
-      Map<String, dynamic>? data = snapshot.data() as Map<String, double>;
+      Map<String, double> data = snapshot.data() as Map<String, double>;
       setState(() {
         tache4 = data['Tache'].toString();
-        montant4 = data['Cotisation'];
+        montant4 = data['Cotisation']!;
       });
     });
   }
 
-  final Map<String, double> dataMap = {
-    'tache1': 2000,
-    'tache2': 400,
-    'tache3': 500,
-    'tache4': 200,
+  Map<String, double> dataMap = {
+    "Tache1": 2000,
+    "Tache2": 500,
+    "Tache3": 400,
+    "Tache4": 200,
   };
 
   @override
   Widget build(BuildContext context) {
+    print(tache1);
     return Scaffold(
         appBar: AppBar(
           title: Text("Cotisations du Voyage " + tache1),
