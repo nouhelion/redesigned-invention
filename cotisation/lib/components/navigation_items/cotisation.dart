@@ -8,9 +8,8 @@ import 'package:cotisation/components/navigation_items/search.dart';
 import 'package:cotisation/components/navigation_items/welcome.dart';
 
 import 'package:flutter/material.dart';
-
+import 'package:pie_chart/pie_chart.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fl_chart/fl_chart.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 User user = _auth.currentUser!;
@@ -175,7 +174,6 @@ String tache1 = ' ', tache2 = ' ', tache3 = ' ', tache4 = ' ';
 double montant1 = 0, montant2 = 0, montant3 = 0, montant4 = 0;
 
 class _ChartPageState extends State<ChartPage> {
-  late List<PieChartSectionData> _dataList;
   Random random = new Random();
 
   Future<String> getDocumentId(String voyage) async {
@@ -193,7 +191,7 @@ class _ChartPageState extends State<ChartPage> {
   @override
   void initState() {
     super.initState();
-    _dataList = [];
+    //_dataList = [];
     _getData();
   }
 
@@ -251,12 +249,24 @@ class _ChartPageState extends State<ChartPage> {
     });
   }
 
+  final Map<String, double> dataMap = {
+    'tache1': 2000,
+    'tache2': 400,
+    'tache3': 500,
+    'tache4': 200,
+  };
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Cotisations du Voyage " + tache1),
-      ),
-    );
+        appBar: AppBar(
+          title: Text("Cotisations du Voyage " + tache1),
+        ),
+        body: Container(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: PieChart(
+            dataMap: dataMap,
+          ),
+        ));
   }
 }
