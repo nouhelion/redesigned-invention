@@ -250,12 +250,17 @@ class _ChartPageState extends State<ChartPage> {
   }
 
   Map<String, double> dataMap = {
-    tache1: 2000,
+    tache1: 200,
     "Tache2": 500,
     "Tache3": 400,
     "Tache4": 200,
   };
-
+  final colorList = <Color>[
+    const Color(0xff20498a),
+    const Color(0xff3d6fad),
+    const Color(0xff88aedb),
+    const Color(0xffbbdaf2),
+  ];
   @override
   Widget build(BuildContext context) {
     print(tache1);
@@ -267,6 +272,8 @@ class _ChartPageState extends State<ChartPage> {
           padding: EdgeInsets.symmetric(horizontal: 16),
           child: PieChart(
             dataMap: dataMap,
+            animationDuration: Duration(milliseconds: 800),
+            colorList: colorList,
           ),
         ));
   }
