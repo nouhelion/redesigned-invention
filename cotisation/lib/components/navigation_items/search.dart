@@ -8,8 +8,6 @@ import 'package:cotisation/model/dataset.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-//import '../../widgets/voyages.dart';
-
 final FirebaseAuth _auth = FirebaseAuth.instance;
 User user = _auth.currentUser!;
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -227,6 +225,11 @@ class _SearchState extends State<Search> {
   }
 }
 
+String viewTache1 = 'Tache1',
+    viewTache2 = 'Tache2',
+    viewTache3 = 'Tache3',
+    viewTache4 = 'Tache4';
+
 class ViewPage extends StatefulWidget {
   final String name;
   const ViewPage({Key? key, required this.name}) : super(key: key);
@@ -251,7 +254,7 @@ class _ViewPageState extends State<ViewPage> {
     return querySnapshot.docs.first.id;
   }
 
-  Future<void> getCurrentVoyage() async {
+  Future<void> getVoyage() async {
     // Get a reference to the current user
     User user = _auth.currentUser!;
 
@@ -283,7 +286,7 @@ class _ViewPageState extends State<ViewPage> {
       // Set the data as the initial value of the TextEditingController
       _parti1Controller.text = data['Nom'];
       setState(() {
-        dropdownValue1 = data['Tache'];
+        viewTache1 = data['Tache'];
       });
     });
     voyageDocument
@@ -295,7 +298,7 @@ class _ViewPageState extends State<ViewPage> {
       // Set the data as the initial value of the TextEditingController
       _parti2Controller.text = data['Nom'];
       setState(() {
-        dropdownValue2 = data['Tache'];
+        viewTache2 = data['Tache'];
       });
     });
     voyageDocument
@@ -307,7 +310,7 @@ class _ViewPageState extends State<ViewPage> {
       // Set the data as the initial value of the TextEditingController
       _parti3Controller.text = data['Nom'];
       setState(() {
-        dropdownValue3 = data['Tache'];
+        viewTache3 = data['Tache'];
       });
     });
     voyageDocument
@@ -319,7 +322,7 @@ class _ViewPageState extends State<ViewPage> {
       // Set the data as the initial value of the TextEditingController
       _parti4Controller.text = data['Nom'];
       setState(() {
-        dropdownValue4 = data['Tache'];
+        viewTache4 = data['Tache'];
       });
     });
   }
@@ -327,7 +330,17 @@ class _ViewPageState extends State<ViewPage> {
   @override
   void initState() {
     super.initState();
-    getCurrentVoyage();
+    getVoyage();
+  }
+
+  @override
+  void dispose() {
+    // Clear the counter when the widget is removed from the tree
+    String viewTache1 = 'Tache1',
+        viewTache2 = 'Tache2',
+        viewTache3 = 'Tache3',
+        viewTache4 = 'Tache4';
+    super.dispose();
   }
 
   @override
@@ -422,7 +435,7 @@ class _ViewPageState extends State<ViewPage> {
                           borderRadius: BorderRadius.all(Radius.circular(8))),
                     ),
                     dropdownColor: Colors.white,
-                    value: dropdownValue1,
+                    value: viewTache1,
                     onChanged: null,
                     items: <String>[
                       'Tâche1',
@@ -491,7 +504,7 @@ class _ViewPageState extends State<ViewPage> {
                           borderRadius: BorderRadius.all(Radius.circular(8))),
                     ),
                     dropdownColor: Colors.white,
-                    value: dropdownValue2,
+                    value: viewTache2,
                     onChanged: null,
                     items: <String>[
                       'Tâche2',
@@ -560,7 +573,7 @@ class _ViewPageState extends State<ViewPage> {
                           borderRadius: BorderRadius.all(Radius.circular(8))),
                     ),
                     dropdownColor: Colors.white,
-                    value: dropdownValue3,
+                    value: viewTache3,
                     onChanged: null,
                     items: <String>[
                       'Tâche3',
@@ -629,7 +642,7 @@ class _ViewPageState extends State<ViewPage> {
                           borderRadius: BorderRadius.all(Radius.circular(8))),
                     ),
                     dropdownColor: Colors.white,
-                    value: dropdownValue4,
+                    value: viewTache4,
                     onChanged: null,
                     items: <String>[
                       'Tâche4',
@@ -741,9 +754,8 @@ class _ModifyPageState extends State<ModifyPage> {
       Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>;
       // Set the data as the initial value of the TextEditingController
       _parti1Controller.text = data['Nom'];
-      setState(() {
-        dropdownValue1 = data['Tache'];
-      });
+
+      dropdownValue1 = data['Tache'];
     });
     voyageDocument
         .collection("participants")
@@ -753,9 +765,8 @@ class _ModifyPageState extends State<ModifyPage> {
       Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>;
       // Set the data as the initial value of the TextEditingController
       _parti2Controller.text = data['Nom'];
-      setState(() {
-        dropdownValue2 = data['Tache'];
-      });
+
+      dropdownValue2 = data['Tache'];
     });
     voyageDocument
         .collection("participants")
@@ -765,9 +776,8 @@ class _ModifyPageState extends State<ModifyPage> {
       Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>;
       // Set the data as the initial value of the TextEditingController
       _parti3Controller.text = data['Nom'];
-      setState(() {
-        dropdownValue3 = data['Tache'];
-      });
+
+      dropdownValue3 = data['Tache'];
     });
     voyageDocument
         .collection("participants")
@@ -777,9 +787,8 @@ class _ModifyPageState extends State<ModifyPage> {
       Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>;
       // Set the data as the initial value of the TextEditingController
       _parti4Controller.text = data['Nom'];
-      setState(() {
-        dropdownValue4 = data['Tache'];
-      });
+
+      dropdownValue4 = data['Tache'];
     });
   }
 
@@ -862,6 +871,16 @@ class _ModifyPageState extends State<ModifyPage> {
   void initState() {
     super.initState();
     getCurrentVoyage();
+  }
+
+  @override
+  void dispose() {
+    // Clear the counter when the widget is removed from the tree
+    String dropdownValue1 = 'Tache1',
+        dropdownValue2 = 'Tache2',
+        dropdownValue3 = 'Tache3',
+        dropdownValue4 = 'Tache4';
+    super.dispose();
   }
 
   @override
