@@ -168,7 +168,10 @@ class ChartPage extends StatefulWidget {
   State<ChartPage> createState() => _ChartPageState();
 }
 
-String tache1 = ' ', tache2 = ' ', tache3 = ' ', tache4 = ' ';
+String tache1 = 'tache1',
+    tache2 = 'tache2',
+    tache3 = 'tache3',
+    tache4 = 'tache4';
 double montant1 = 0.0, montant2 = 0.0, montant3 = 0.0, montant4 = 0.0;
 
 class _ChartPageState extends State<ChartPage> {
@@ -247,7 +250,7 @@ class _ChartPageState extends State<ChartPage> {
   }
 
   Map<String, double> dataMap = {
-    "Tache1": 2000,
+    tache1: 2000,
     "Tache2": 500,
     "Tache3": 400,
     "Tache4": 200,
