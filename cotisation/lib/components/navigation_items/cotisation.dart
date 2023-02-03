@@ -194,12 +194,7 @@ class _ChartPageState extends State<ChartPage> {
     _getData();
   }
 
-  late Map<String, double> dataMap = {
-    tache1: montant1,
-    tache2: montant2,
-    tache3: montant3,
-    tache4: montant4,
-  };
+  late Map<String, double> dataMap;
   Future<void> _getData() async {
     String documentId = await getDocumentId(name);
     User user = _auth.currentUser!;
