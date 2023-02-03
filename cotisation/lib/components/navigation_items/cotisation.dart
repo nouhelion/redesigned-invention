@@ -192,9 +192,14 @@ class _ChartPageState extends State<ChartPage> {
     super.initState();
 
     _getData();
-    print(tache1);
   }
 
+  late Map<String, double> dataMap = {
+    tache1: montant1,
+    tache2: montant2,
+    tache3: montant3,
+    tache4: montant4,
+  };
   Future<void> _getData() async {
     String documentId = await getDocumentId(name);
     User user = _auth.currentUser!;
@@ -203,58 +208,31 @@ class _ChartPageState extends State<ChartPage> {
         _firestore.collection('Voyages').doc(uid).collection("items");
     DocumentReference voyageDocument = usersCollection.doc(documentId);
 
-    voyageDocument
-        .collection("participants")
-        .doc("Participant1")
-        .get()
-        .then((snapshot) async {
-      Map<String, double> data = snapshot.data() as Map<String, double>;
+    await Future.wait([
+      voyageDocument.collection("participants").doc("Participant1").get(),
+      voyageDocument.collection("participants").doc("Participant2").get(),
+      voyageDocument.collection("participants").doc("Participant3").get(),
+      voyageDocument.collection("participants").doc("Participant4").get(),
+    ]).then((snapshots) async {
       setState(() {
-        tache1 = data['Tache'].toString();
-        montant1 = data['Cotisation']!;
-      });
-    });
-    voyageDocument
-        .collection("participants")
-        .doc("Participant2")
-        .get()
-        .then((snapshot) async {
-      Map<String, double> data = snapshot.data() as Map<String, double>;
-      setState(() {
-        tache2 = data['Tache'].toString();
-        montant2 = data['Cotisation']!;
-      });
-    });
-    voyageDocument
-        .collection("participants")
-        .doc("Participant3")
-        .get()
-        .then((snapshot) async {
-      Map<String, double> data = snapshot.data() as Map<String, double>;
-      setState(() {
-        tache3 = data['Tache'].toString();
-        montant3 = data['Cotisation']!;
-      });
-    });
-    voyageDocument
-        .collection("participants")
-        .doc("Participant4")
-        .get()
-        .then((snapshot) async {
-      Map<String, double> data = snapshot.data() as Map<String, double>;
-      setState(() {
-        tache4 = data['Tache'].toString();
-        montant4 = data['Cotisation']!;
+        tache1 = snapshots[0].data()!['Tache'].toString();
+        montant1 = snapshots[0].data()!['Cotisation'];
+        tache2 = snapshots[1].data()!['Tache'].toString();
+        montant2 = snapshots[1].data()!['Cotisation']!;
+        tache3 = snapshots[2].data()!['Tache'].toString();
+        montant3 = snapshots[2].data()!['Cotisation']!;
+        tache4 = snapshots[3].data()!['Tache'].toString();
+        montant4 = snapshots[3].data()!['Cotisation']!;
+        dataMap = {
+          tache1: montant1,
+          tache2: montant2,
+          tache3: montant3,
+          tache4: montant4,
+        };
       });
     });
   }
 
-  Map<String, double> dataMap = {
-    tache1: 200,
-    "Tache2": 500,
-    "Tache3": 400,
-    "Tache4": 200,
-  };
   final colorList = <Color>[
     const Color(0xff20498a),
     const Color(0xff3d6fad),
