@@ -187,13 +187,6 @@ class _ChartPageState extends State<ChartPage> {
     return querySnapshot.docs.first.id;
   }
 
-  @override
-  void initState() {
-    super.initState();
-
-    _getData();
-  }
-
   late Map<String, double> dataMap;
   Future<void> _getData() async {
     String documentId = await getDocumentId(name);
@@ -203,29 +196,38 @@ class _ChartPageState extends State<ChartPage> {
         _firestore.collection('Voyages').doc(uid).collection("items");
     DocumentReference voyageDocument = usersCollection.doc(documentId);
 
-    await Future.wait([
-      voyageDocument.collection("participants").doc("Participant1").get(),
-      voyageDocument.collection("participants").doc("Participant2").get(),
-      voyageDocument.collection("participants").doc("Participant3").get(),
-      voyageDocument.collection("participants").doc("Participant4").get(),
-    ]).then((snapshots) async {
-      setState(() {
-        tache1 = snapshots[0].data()!['Tache'].toString();
-        montant1 = snapshots[0].data()!['Cotisation'];
-        tache2 = snapshots[1].data()!['Tache'].toString();
-        montant2 = snapshots[1].data()!['Cotisation']!;
-        tache3 = snapshots[2].data()!['Tache'].toString();
-        montant3 = snapshots[2].data()!['Cotisation']!;
-        tache4 = snapshots[3].data()!['Tache'].toString();
-        montant4 = snapshots[3].data()!['Cotisation']!;
-        dataMap = {
-          tache1: montant1,
-          tache2: montant2,
-          tache3: montant3,
-          tache4: montant4,
-        };
-      });
+    List<String> tache = [tache1, tache2, tache3, tache4];
+    List<double> montant = [montant1, montant2, montant3, montant4];
+    List<Future> futures = [];
+
+    for (int i = 0; i < 4; i++) {
+      futures.add(voyageDocument
+          .collection("participants")
+          .doc("Participant${i + 1}")
+          .get());
+    }
+
+    await Future.wait(futures).then((snapshots) async {
+      for (int i = 0; i < 4; i++) {
+        setState(() {
+          tache[i] = snapshots[i].data()['Tache'].toString();
+          montant[i] = snapshots[i].data()['Cotisation'].toDouble();
+        });
+      }
     });
+
+    dataMap = {
+      tache[0]: montant[0],
+      tache[1]: montant[1],
+      tache[2]: montant[2],
+      tache[3]: montant[3],
+    };
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getData();
   }
 
   final colorList = <Color>[
@@ -236,10 +238,9 @@ class _ChartPageState extends State<ChartPage> {
   ];
   @override
   Widget build(BuildContext context) {
-    print(tache1);
     return Scaffold(
         appBar: AppBar(
-          title: Text("Cotisations du Voyage " + tache1),
+          title: Text("Cotisations du Voyage ${widget.name}"),
         ),
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: 16),
