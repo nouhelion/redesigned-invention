@@ -187,7 +187,12 @@ class _ChartPageState extends State<ChartPage> {
     return querySnapshot.docs.first.id;
   }
 
-  late Map<String, double> dataMap;
+  Map<String, double> dataMap = {
+    "Data 1": 20.0,
+    "Data 2": 20.0,
+    "Data 3": 20.0,
+    "Data 4": 20.0,
+  };
   Future<void> _getData() async {
     String documentId = await getDocumentId(name);
     User user = _auth.currentUser!;
@@ -244,10 +249,15 @@ class _ChartPageState extends State<ChartPage> {
         ),
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: 16),
-          child: PieChart(
-            dataMap: dataMap,
-            animationDuration: Duration(milliseconds: 800),
-            colorList: colorList,
+          child: FutureBuilder(
+            future: _getData(),
+            builder: (context, snapshot) {
+              return PieChart(
+                dataMap: dataMap,
+                animationDuration: Duration(milliseconds: 800),
+                colorList: colorList,
+              );
+            },
           ),
         ));
   }
