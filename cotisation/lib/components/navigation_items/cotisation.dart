@@ -154,7 +154,7 @@ class _CotisationState extends State<Cotisation> {
         ],
         currentIndex: pageIndex,
         unselectedItemColor: Colors.grey,
-        selectedItemColor: Colors.indigo,
+        selectedItemColor: Colors.brown,
         onTap: _onItemTapped,
       ),
     );

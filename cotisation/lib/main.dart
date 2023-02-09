@@ -9,11 +9,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
-   WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MaterialApp(
     theme: ThemeData(
-      primarySwatch: Colors.indigo,
+      primarySwatch: Colors.brown,
     ),
     debugShowCheckedModeBanner: false,
     home: HomePage(),
@@ -22,7 +22,7 @@ Future<void> main() async {
 
 class HomePage extends StatelessWidget {
   @override
-  Widget build(BuildContext context) { 
+  Widget build(BuildContext context) {
     return Scaffold(
       body: /* StreamBuilder<User?>(stream:FirebaseAuth.instance.authStateChanges(), builder: (context, snapshot) {
         if (snapshot.hasData) {
@@ -85,7 +85,7 @@ class HomePage extends StatelessWidget {
                     height: 60,
                     onPressed: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => LoginPage()));  
+                          MaterialPageRoute(builder: (context) => LoginPage()));
                     },
                     // defining the shape
                     shape: RoundedRectangleBorder(
@@ -108,7 +108,7 @@ class HomePage extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (context) => SignupPage()));
                     },
-                    color: Colors.indigo,
+                    color: Colors.brown[600],
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30)),
                     child: Text(
@@ -128,6 +128,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-
-

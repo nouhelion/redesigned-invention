@@ -314,7 +314,7 @@ class _ProfileState extends State<Profile> {
                     minWidth: 120,
                     height: 60,
                     onPressed: updateUser,
-                    color: Colors.indigo,
+                    color: Colors.brown,
                     elevation: 0,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50),
@@ -352,7 +352,7 @@ class _ProfileState extends State<Profile> {
         ],
         currentIndex: pageIndex,
         unselectedItemColor: Colors.grey,
-        selectedItemColor: Colors.indigo,
+        selectedItemColor: Colors.brown,
         onTap: _onItemTapped,
       ),
     );
