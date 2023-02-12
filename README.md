@@ -1,5 +1,5 @@
 # Gestion des Cotisations Au Sein d'un Groupe app using Flutter and Firebase
-Flutter app for managing membership fees within a group.
+Flutter app for managing membership fees within a group
 
 ## Getting Started
 It is a complete app for managing membership fees within a group, designed using Flutter. It uses Firebase as a backend for CRUD operations.
@@ -25,7 +25,11 @@ It is a complete app for managing membership fees within a group, designed using
       * Overview of membership fees
       * List of members and their fees
 
-
+   - Trips
+      
+      * Add a trip
+      * Add list of members with the task assigned to them  
+   
    - Members
 
       * List of members
@@ -33,26 +37,22 @@ It is a complete app for managing membership fees within a group, designed using
       * Add a new member
       * Add Tasks
 
-
    - Fees
 
       * List of fees
       * Fee details view
       * Add a new fee
 
-
    - Profile
 
       * Account details
       * Edit profile details
-
 
    - Authentication
 
       * Registration with email and password
       * Login with email and password
       * Logout
-
 
    - Backend
 
