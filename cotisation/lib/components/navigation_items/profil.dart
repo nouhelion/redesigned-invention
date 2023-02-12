@@ -129,35 +129,52 @@ class _ProfileState extends State<Profile> {
       body: ListView(
         children: [
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 40),
+            padding: EdgeInsets.symmetric(horizontal: 30),
             width: double.infinity,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    Text(
-                      "Votre Profile",
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
+                Row(
+                  children: [
+                    Column(
+                      children: <Widget>[
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Votre Profile",
+                          style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "Modifier vos informations",
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.grey[700],
+                          ),
+                        ),
+                      ],
+                    ),
+                    Spacer(),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.teal[700], // Background color
                       ),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      "Modifier vos informations",
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.grey[700],
+                      onPressed: signOut,
+                      child: Icon(
+                        Icons.logout,
+                        size: 20,
                       ),
                     ),
                   ],
                 ),
-                ElevatedButton(
-                  onPressed: signOut,
-                  child: Text('Déconnexion'),
+                SizedBox(
+                  height: 30,
                 ),
                 Column(
                   children: <Widget>[
@@ -328,6 +345,9 @@ class _ProfileState extends State<Profile> {
                       ),
                     ),
                   ),
+                ),
+                SizedBox(
+                  height: 20,
                 ),
               ],
             ),
