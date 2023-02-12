@@ -163,7 +163,7 @@ class _WelcomeState extends State<Welcome> {
         ],
         currentIndex: pageIndex,
         unselectedItemColor: Colors.grey,
-        selectedItemColor: Colors.brown,
+        selectedItemColor: Colors.teal[700],
         onTap: _onItemTapped,
       ),
     );

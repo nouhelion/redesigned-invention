@@ -65,7 +65,7 @@ class _SignupPageState extends State<SignupPage> {
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
-                      color: Colors.brown[600],
+                      color: Colors.teal[700],
                     ),
                   ),
                   SizedBox(
@@ -229,7 +229,7 @@ class _SignupPageState extends State<SignupPage> {
                   height: 60,
                   //when to sign up
                   onPressed: signUp,
-                  color: Colors.brown,
+                  color: Colors.teal[700],
                   elevation: 0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),

@@ -154,7 +154,7 @@ class _CotisationState extends State<Cotisation> {
         ],
         currentIndex: pageIndex,
         unselectedItemColor: Colors.grey,
-        selectedItemColor: Colors.brown,
+        selectedItemColor: Colors.teal[700],
         onTap: _onItemTapped,
       ),
     );
@@ -188,10 +188,10 @@ class _ChartPageState extends State<ChartPage> {
   }
 
   Map<String, double> dataMap = {
-    "Data 1": 20.0,
-    "Data 2": 20.0,
-    "Data 3": 20.0,
-    "Data 4": 20.0,
+    "Utilité": 1000.0,
+    "Transport": 2000.0,
+    "Nourriture": 500.0,
+    "Location": 2000.0,
   };
   Future<void> _getData() async {
     String documentId = await getDocumentId(name);
@@ -236,16 +236,17 @@ class _ChartPageState extends State<ChartPage> {
   }
 
   final colorList = <Color>[
-    const Color(0xff20498a),
-    const Color(0xff3d6fad),
-    const Color(0xff88aedb),
-    const Color(0xffbbdaf2),
+    const Color(0xff00796b),
+    const Color(0xff2e9572),
+    const Color(0xff59b075),
+    const Color(0xff88ca73),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text("Cotisations du Voyage ${widget.name}"),
+          backgroundColor: Colors.teal[700],
         ),
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: 16),

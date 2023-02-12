@@ -114,7 +114,7 @@ class _SearchState extends State<Search> {
                                   child: Icon(
                                     Icons.time_to_leave_sharp,
                                     size: 50,
-                                    color: Colors.brown[500],
+                                    color: Colors.teal[700],
                                   ),
                                 ),
                               ),
@@ -218,7 +218,7 @@ class _SearchState extends State<Search> {
         ],
         currentIndex: pageIndex,
         unselectedItemColor: Colors.grey,
-        selectedItemColor: Colors.brown,
+        selectedItemColor: Colors.teal[700],
         onTap: _onItemTapped,
       ),
     );
@@ -347,7 +347,7 @@ class _ViewPageState extends State<ViewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.brown[400],
+        backgroundColor: Colors.teal[700],
         title: Text('Contenu du voyage ' + name),
       ),
       body: SingleChildScrollView(
@@ -887,7 +887,7 @@ class _ModifyPageState extends State<ModifyPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.brown[400],
+        backgroundColor: Colors.teal[700],
         title: Text('Modification du voyage ' + name),
       ),
       body: SingleChildScrollView(
@@ -1244,7 +1244,7 @@ class _ModifyPageState extends State<ModifyPage> {
                 minWidth: 120,
                 height: 60,
                 onPressed: updateVoyage,
-                color: Colors.brown,
+                color: Colors.teal[700],
                 elevation: 0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(50),

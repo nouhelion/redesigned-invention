@@ -108,7 +108,7 @@ class HomePage extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (context) => SignupPage()));
                     },
-                    color: Colors.brown[600],
+                    color: Colors.teal[700],
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30)),
                     child: Text(
