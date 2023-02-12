@@ -5,8 +5,9 @@ Flutter app for managing membership fees within a group.
 It is a complete app for managing membership fees within a group, designed using Flutter. It uses Firebase as a backend for CRUD operations.
 
 ## Tools Used
-* Flutter
-* Firebase
+* Flutter    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://static-00.iconduck.com/assets.00/flutter-icon-413x512-4picx6vy.png" alt="Flutter" width='18' height='23'>
+* Firebase   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://seeklogo.com/images/F/firebase-logo-402F407EE0-seeklogo.com.png" alt="Firebase" width='18' height='28'>
+
 
 ## Steps to Reproduce the Project in Your Environment
    * Download and set up the Flutter SDK.
