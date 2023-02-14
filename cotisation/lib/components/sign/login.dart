@@ -13,11 +13,11 @@ class LoginPage extends StatefulWidget {
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
-
+//bool _obscureText = true;
 class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final bool _isHidden = true;
+  bool _isHidden = true;
   @override
   void dispose() {
     _emailController.dispose();
@@ -97,21 +97,31 @@ class _LoginPageState extends State<LoginPage> {
                         height: 10,
                       ),
                       TextFormField(
-                        keyboardType: TextInputType.text,
-                        controller: _passwordController,
-                        decoration: const InputDecoration(
-                          prefixIcon: Icon(Icons.lock),
-                          labelText: 'Mot de Passe',
-                          labelStyle: TextStyle(
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey),
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8))),
-                        ),
-                        obscureText: _isHidden,
-                      ),
+  keyboardType: TextInputType.text,
+  controller: _passwordController,
+  decoration: InputDecoration(
+    prefixIcon: Icon(Icons.lock),
+    labelText: 'Mot de Passe',
+    labelStyle: TextStyle(
+      fontFamily: 'Montserrat',
+      fontWeight: FontWeight.bold,
+      color: Colors.grey
+    ),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(8))
+    ),
+    suffixIcon: IconButton(
+      icon: _isHidden ? Icon(Icons.visibility_off) : Icon(Icons.visibility),
+      onPressed: () {
+        setState(() {
+          _isHidden = !_isHidden;
+        });
+      },
+    ),
+  ),
+  obscureText: _isHidden,
+),
+
                       SizedBox(
                         height: 5.0,
                       ),
