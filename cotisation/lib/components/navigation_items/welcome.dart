@@ -141,9 +141,10 @@ class _WelcomeState extends State<Welcome> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.teal[700],
         onPressed: addVoyage,
         tooltip: 'Add',
-        child: Icon(Icons.add),
+        child: Icon(Icons.add, color: Colors.white),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -311,6 +312,7 @@ class _ParticipantPageState extends State<ParticipantPage> {
                         subtitle: TextFormField(
                           controller: _parti1Controller,
                           decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.person),
                             border: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(8))),
@@ -371,6 +373,7 @@ class _ParticipantPageState extends State<ParticipantPage> {
                         subtitle: TextFormField(
                           controller: _parti2Controller,
                           decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.person),
                             border: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(8))),
@@ -431,6 +434,7 @@ class _ParticipantPageState extends State<ParticipantPage> {
                         subtitle: TextFormField(
                           controller: _parti3Controller,
                           decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.person),
                             border: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(8))),
@@ -491,6 +495,7 @@ class _ParticipantPageState extends State<ParticipantPage> {
                         subtitle: TextFormField(
                           controller: _parti4Controller,
                           decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.person),
                             border: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(8))),
@@ -550,9 +555,10 @@ class _ParticipantPageState extends State<ParticipantPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.teal[700],
         onPressed: addParticpant,
         tooltip: 'Add',
-        child: Icon(Icons.add),
+        child: Icon(Icons.add, color: Colors.white),
       ),
     );
   }

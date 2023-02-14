@@ -110,7 +110,7 @@ class _CotisationState extends State<Cotisation> {
                                       child: Icon(
                                         Icons.show_chart,
                                         size: 50,
-                                        color: Colors.green,
+                                        color: Colors.teal[700],
                                       ),
                                     ),
                                   ),
