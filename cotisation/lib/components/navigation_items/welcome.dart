@@ -287,6 +287,7 @@ class _ParticipantPageState extends State<ParticipantPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.teal[700],
         title: Text(
             "Détails du Voyage " + "`" + _nameController.text.trim() + "`"),
       ),
@@ -316,7 +317,7 @@ class _ParticipantPageState extends State<ParticipantPage> {
                             border: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(8))),
-                            hintText: '  Nom du participant',
+                            hintText: '  Nom',
                           ),
                         ),
                       ),
@@ -352,7 +353,18 @@ class _ParticipantPageState extends State<ParticipantPage> {
                           'Transport',
                           'Utilité',
                           'Urgence',
-                          'Médicaments'
+                          'Médicaments',
+                          'Hébergement',
+                          'Loisirs',
+                          'Assurance',
+                          'Vêtements',
+                          'Réception',
+                          'Cadeaux',
+                          'Photographie',
+                          'Musique',
+                          'Décoration',
+                          'Location',
+                          'Autres'
                         ].map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
@@ -377,7 +389,7 @@ class _ParticipantPageState extends State<ParticipantPage> {
                             border: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(8))),
-                            hintText: '  Nom du participant',
+                            hintText: '  Nom',
                           ),
                         ),
                       ),
@@ -413,7 +425,18 @@ class _ParticipantPageState extends State<ParticipantPage> {
                           'Transport',
                           'Utilité',
                           'Urgence',
-                          'Médicaments'
+                          'Médicaments',
+                          'Hébergement',
+                          'Loisirs',
+                          'Assurance',
+                          'Vêtements',
+                          'Réception',
+                          'Cadeaux',
+                          'Photographie',
+                          'Musique',
+                          'Décoration',
+                          'Location',
+                          'Autres'
                         ].map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
@@ -438,7 +461,7 @@ class _ParticipantPageState extends State<ParticipantPage> {
                             border: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(8))),
-                            hintText: '  Nom du participant',
+                            hintText: '  Nom',
                           ),
                         ),
                       ),
@@ -474,7 +497,18 @@ class _ParticipantPageState extends State<ParticipantPage> {
                           'Transport',
                           'Utilité',
                           'Urgence',
-                          'Médicaments'
+                          'Médicaments',
+                          'Hébergement',
+                          'Loisirs',
+                          'Assurance',
+                          'Vêtements',
+                          'Réception',
+                          'Cadeaux',
+                          'Photographie',
+                          'Musique',
+                          'Décoration',
+                          'Location',
+                          'Autres'
                         ].map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
@@ -499,7 +533,7 @@ class _ParticipantPageState extends State<ParticipantPage> {
                             border: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(8))),
-                            hintText: '  Nom du participant',
+                            hintText: '  Nom',
                           ),
                         ),
                       ),
@@ -535,7 +569,18 @@ class _ParticipantPageState extends State<ParticipantPage> {
                           'Transport',
                           'Utilité',
                           'Urgence',
-                          'Médicaments'
+                          'Médicaments',
+                          'Hébergement',
+                          'Loisirs',
+                          'Assurance',
+                          'Vêtements',
+                          'Réception',
+                          'Cadeaux',
+                          'Photographie',
+                          'Musique',
+                          'Décoration',
+                          'Location',
+                          'Autres'
                         ].map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
